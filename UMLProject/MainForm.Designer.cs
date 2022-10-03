@@ -28,114 +28,122 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.panel_top = new System.Windows.Forms.Panel();
+            this.button_dependency = new System.Windows.Forms.Button();
+            this.button_aggregation = new System.Windows.Forms.Button();
+            this.button_box = new System.Windows.Forms.Button();
+            this.button_composition = new System.Windows.Forms.Button();
+            this.button_association = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button_inheritance = new System.Windows.Forms.Button();
             this.button_file = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_implementation = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.pictureBox_drawing_area = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.panel_top.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panel_top
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel_top.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button_file);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(874, 76);
-            this.panel1.TabIndex = 0;
+            this.panel_top.AutoSize = true;
+            this.panel_top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel_top.Controls.Add(this.button_dependency);
+            this.panel_top.Controls.Add(this.button_aggregation);
+            this.panel_top.Controls.Add(this.button_box);
+            this.panel_top.Controls.Add(this.button_composition);
+            this.panel_top.Controls.Add(this.button_association);
+            this.panel_top.Controls.Add(this.button2);
+            this.panel_top.Controls.Add(this.button_inheritance);
+            this.panel_top.Controls.Add(this.button_file);
+            this.panel_top.Controls.Add(this.button_implementation);
+            this.panel_top.Controls.Add(this.button4);
+            this.panel_top.Location = new System.Drawing.Point(0, 0);
+            this.panel_top.Name = "panel_top";
+            this.panel_top.Size = new System.Drawing.Size(874, 76);
+            this.panel_top.TabIndex = 0;
             // 
-            // button7
+            // button_dependency
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button7.BackgroundImage = global::UMLProject.Properties.Resources.dependencyR;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button7.Location = new System.Drawing.Point(337, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(34, 34);
-            this.button7.TabIndex = 16;
-            this.button7.UseVisualStyleBackColor = false;
+            this.button_dependency.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_dependency.BackgroundImage = global::UMLProject.Properties.Resources.dependencyR;
+            this.button_dependency.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_dependency.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_dependency.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_dependency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_dependency.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_dependency.Location = new System.Drawing.Point(337, 12);
+            this.button_dependency.Name = "button_dependency";
+            this.button_dependency.Size = new System.Drawing.Size(34, 34);
+            this.button_dependency.TabIndex = 16;
+            this.button_dependency.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // button_aggregation
             // 
-            this.button8.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button8.BackgroundImage = global::UMLProject.Properties.Resources.aggregationR;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button8.Location = new System.Drawing.Point(371, 12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(34, 34);
-            this.button8.TabIndex = 15;
-            this.button8.UseVisualStyleBackColor = false;
+            this.button_aggregation.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_aggregation.BackgroundImage = global::UMLProject.Properties.Resources.aggregationR;
+            this.button_aggregation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_aggregation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_aggregation.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_aggregation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_aggregation.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_aggregation.Location = new System.Drawing.Point(371, 12);
+            this.button_aggregation.Name = "button_aggregation";
+            this.button_aggregation.Size = new System.Drawing.Size(34, 34);
+            this.button_aggregation.TabIndex = 15;
+            this.button_aggregation.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // button_box
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.Location = new System.Drawing.Point(102, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 34);
-            this.button1.TabIndex = 3;
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_box.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_box.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_box.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_box.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_box.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_box.Location = new System.Drawing.Point(102, 12);
+            this.button_box.Name = "button_box";
+            this.button_box.Size = new System.Drawing.Size(94, 34);
+            this.button_box.TabIndex = 3;
+            this.button_box.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // button_composition
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button9.BackgroundImage = global::UMLProject.Properties.Resources.compositionR;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button9.Location = new System.Drawing.Point(405, 12);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(34, 34);
-            this.button9.TabIndex = 14;
-            this.button9.UseVisualStyleBackColor = false;
+            this.button_composition.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_composition.BackgroundImage = global::UMLProject.Properties.Resources.compositionR;
+            this.button_composition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_composition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_composition.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_composition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_composition.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_composition.Location = new System.Drawing.Point(405, 12);
+            this.button_composition.Name = "button_composition";
+            this.button_composition.Size = new System.Drawing.Size(34, 34);
+            this.button_composition.TabIndex = 14;
+            this.button_composition.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // button_association
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button6.BackgroundImage = global::UMLProject.Properties.Resources.associationR;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button6.Location = new System.Drawing.Point(235, 12);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(34, 34);
-            this.button6.TabIndex = 13;
-            this.button6.UseVisualStyleBackColor = false;
+            this.button_association.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_association.BackgroundImage = global::UMLProject.Properties.Resources.associationR;
+            this.button_association.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_association.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_association.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_association.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_association.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_association.Location = new System.Drawing.Point(235, 12);
+            this.button_association.Name = "button_association";
+            this.button_association.Size = new System.Drawing.Size(34, 34);
+            this.button_association.TabIndex = 13;
+            this.button_association.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -155,20 +163,20 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // button_inheritance
             // 
-            this.button5.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button5.BackgroundImage = global::UMLProject.Properties.Resources.inheritanceR;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button5.Location = new System.Drawing.Point(269, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(34, 34);
-            this.button5.TabIndex = 12;
-            this.button5.UseVisualStyleBackColor = false;
+            this.button_inheritance.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_inheritance.BackgroundImage = global::UMLProject.Properties.Resources.inheritanceR;
+            this.button_inheritance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_inheritance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_inheritance.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_inheritance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_inheritance.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_inheritance.Location = new System.Drawing.Point(269, 12);
+            this.button_inheritance.Name = "button_inheritance";
+            this.button_inheritance.Size = new System.Drawing.Size(34, 34);
+            this.button_inheritance.TabIndex = 12;
+            this.button_inheritance.UseVisualStyleBackColor = false;
             // 
             // button_file
             // 
@@ -184,21 +192,22 @@
             this.button_file.Size = new System.Drawing.Size(56, 56);
             this.button_file.TabIndex = 0;
             this.button_file.UseVisualStyleBackColor = false;
+            this.button_file.Click += new System.EventHandler(this.button_file_Click);
             // 
-            // button3
+            // button_implementation
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button3.BackgroundImage = global::UMLProject.Properties.Resources.realization_implementationR;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button3.Location = new System.Drawing.Point(303, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(34, 34);
-            this.button3.TabIndex = 11;
-            this.button3.UseVisualStyleBackColor = false;
+            this.button_implementation.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_implementation.BackgroundImage = global::UMLProject.Properties.Resources.realization_implementationR;
+            this.button_implementation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_implementation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_implementation.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_implementation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_implementation.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button_implementation.Location = new System.Drawing.Point(303, 12);
+            this.button_implementation.Name = "button_implementation";
+            this.button_implementation.Size = new System.Drawing.Size(34, 34);
+            this.button_implementation.TabIndex = 11;
+            this.button_implementation.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
@@ -218,17 +227,82 @@
             this.button4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button4.UseVisualStyleBackColor = false;
             // 
+            // pictureBox_drawing_area
+            // 
+            this.pictureBox_drawing_area.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox_drawing_area.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.pictureBox_drawing_area.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 74);
+            this.pictureBox_drawing_area.Name = "pictureBox_drawing_area";
+            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 394);
+            this.pictureBox_drawing_area.TabIndex = 1;
+            this.pictureBox_drawing_area.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button13);
+            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.button11);
+            this.panel2.Controls.Add(this.button10);
+            this.panel2.Location = new System.Drawing.Point(0, 74);
+            this.panel2.MaximumSize = new System.Drawing.Size(120, 120);
+            this.panel2.Name = "panel_menu";
+            this.panel2.Size = new System.Drawing.Size(0, 0);
+            this.panel2.TabIndex = 2;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(0, 66);
+            this.button13.Name = "button_export";
+            this.button13.Size = new System.Drawing.Size(117, 23);
+            this.button13.TabIndex = 3;
+            this.button13.Text = "Export (json/xml)";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(0, 44);
+            this.button12.Name = "button_import";
+            this.button12.Size = new System.Drawing.Size(117, 23);
+            this.button12.TabIndex = 2;
+            this.button12.Text = "Import (json/xml)";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(0, 22);
+            this.button11.Name = "button_generate_code";
+            this.button11.Size = new System.Drawing.Size(117, 23);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Generate Code";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(0, 0);
+            this.button10.Name = "button_save";
+            this.button10.Size = new System.Drawing.Size(117, 23);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "Save";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.ClientSize = new System.Drawing.Size(874, 467);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pictureBox_drawing_area);
+            this.Controls.Add(this.panel_top);
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "MainForm";
             this.Text = "UML Design";
-            this.panel1.ResumeLayout(false);
+            this.panel_top.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,16 +310,22 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel panel_top;
         private Button button_file;
-        private Button button1;
+        private Button button_box;
         private Button button2;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button6;
-        private Button button5;
-        private Button button3;
+        private Button button_dependency;
+        private Button button_aggregation;
+        private Button button_composition;
+        private Button button_association;
+        private Button button_inheritance;
+        private Button button_implementation;
         private Button button4;
+        private PictureBox pictureBox_drawing_area;
+        private Panel panel2;
+        private Button button13;
+        private Button button12;
+        private Button button11;
+        private Button button10;
     }
 }
