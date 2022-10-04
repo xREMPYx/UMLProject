@@ -45,9 +45,11 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_top
@@ -234,11 +236,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_drawing_area.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.pictureBox_drawing_area.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 74);
+            this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_drawing_area.Name = "pictureBox_drawing_area";
-            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 394);
+            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 393);
             this.pictureBox_drawing_area.TabIndex = 1;
             this.pictureBox_drawing_area.TabStop = false;
+            this.pictureBox_drawing_area.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_drawing_area_Paint);
             // 
             // panel2
             // 
@@ -248,14 +251,14 @@
             this.panel2.Controls.Add(this.button10);
             this.panel2.Location = new System.Drawing.Point(0, 74);
             this.panel2.MaximumSize = new System.Drawing.Size(120, 120);
-            this.panel2.Name = "panel_menu";
+            this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 0);
             this.panel2.TabIndex = 2;
             // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(0, 66);
-            this.button13.Name = "button_export";
+            this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(117, 23);
             this.button13.TabIndex = 3;
             this.button13.Text = "Export (json/xml)";
@@ -264,7 +267,7 @@
             // button12
             // 
             this.button12.Location = new System.Drawing.Point(0, 44);
-            this.button12.Name = "button_import";
+            this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(117, 23);
             this.button12.TabIndex = 2;
             this.button12.Text = "Import (json/xml)";
@@ -273,7 +276,7 @@
             // button11
             // 
             this.button11.Location = new System.Drawing.Point(0, 22);
-            this.button11.Name = "button_generate_code";
+            this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(117, 23);
             this.button11.TabIndex = 1;
             this.button11.Text = "Generate Code";
@@ -282,11 +285,22 @@
             // button10
             // 
             this.button10.Location = new System.Drawing.Point(0, 0);
-            this.button10.Name = "button_save";
+            this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(117, 23);
             this.button10.TabIndex = 0;
             this.button10.Text = "Save";
             this.button10.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.pictureBox_drawing_area);
+            this.panel1.Location = new System.Drawing.Point(0, 74);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(874, 393);
+            this.panel1.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -294,8 +308,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.ClientSize = new System.Drawing.Size(874, 467);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.pictureBox_drawing_area);
             this.Controls.Add(this.panel_top);
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "MainForm";
@@ -303,6 +317,7 @@
             this.panel_top.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +342,6 @@
         private Button button12;
         private Button button11;
         private Button button10;
+        private Panel panel1;
     }
 }
