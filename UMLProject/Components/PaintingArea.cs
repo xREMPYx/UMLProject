@@ -7,32 +7,29 @@ using UMLProject.Enums;
 
 namespace UMLProject.Components
 {
-    public class PaintingArea : Component
+    public class PaintingArea : Resizable
     {
-        private List<ResizableButton> buttons;
-
         private SolidBrush backColorBrush = new SolidBrush(Color.FromArgb(224, 224, 224));
 
         public PaintingArea()
         {
-            this.X = 10;
-            this.Y = 10;
-            this.Width = 500;
-            this.Height = 300;
+            this.X = 5;
+            this.Y = 5;
+            this.Width = 400;
+            this.Height = 250;
 
-            buttons = new List<ResizableButton>()
-            {
-                new ResizableButton(Arrows.Vertical, (x,y) => this.Width += x, 500, 155),
-
-                new ResizableButton(Arrows.Horizontal, (x,y) => this.Height += y, 255, 305),
-
-                new ResizableButton(Arrows.Combined, (x,y) => { this.Width += x; this.Height += y; }, 500, 300)
-            };
+            UpdateResizeArrows();
         }
 
         public override void Draw(Graphics g)
         {
-            g.FillRectangle(this.backColorBrush, this.X, this.Y, this.Width, this.Width);
+            g.FillRectangle(this.backColorBrush, this.X, this.Y, this.Width, this.Height);
+            base.Draw(g);
+        }
+
+        public void Update()
+        {
+            
         }
     }
 }

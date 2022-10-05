@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMLProject
+namespace UMLProject.Enums
 {
-    public class Location
+    public enum MouseState
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        Down,
+        Up,
     }
 }

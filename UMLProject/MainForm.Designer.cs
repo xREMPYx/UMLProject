@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel_top = new System.Windows.Forms.Panel();
             this.button_dependency = new System.Windows.Forms.Button();
             this.button_aggregation = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             this.panel_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).BeginInit();
             this.panel2.SuspendLayout();
@@ -238,10 +240,13 @@
             this.pictureBox_drawing_area.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_drawing_area.Name = "pictureBox_drawing_area";
-            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 393);
+            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 379);
             this.pictureBox_drawing_area.TabIndex = 1;
             this.pictureBox_drawing_area.TabStop = false;
             this.pictureBox_drawing_area.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_drawing_area_Paint);
+            this.pictureBox_drawing_area.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDown);
+            this.pictureBox_drawing_area.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseMove);
+            this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);
             // 
             // panel2
             // 
@@ -249,8 +254,8 @@
             this.panel2.Controls.Add(this.button12);
             this.panel2.Controls.Add(this.button11);
             this.panel2.Controls.Add(this.button10);
-            this.panel2.Location = new System.Drawing.Point(0, 74);
-            this.panel2.MaximumSize = new System.Drawing.Size(120, 120);
+            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.MaximumSize = new System.Drawing.Size(116, 88);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 0);
             this.panel2.TabIndex = 2;
@@ -297,17 +302,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.pictureBox_drawing_area);
-            this.panel1.Location = new System.Drawing.Point(0, 74);
+            this.panel1.Location = new System.Drawing.Point(0, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(874, 393);
+            this.panel1.Size = new System.Drawing.Size(874, 379);
             this.panel1.TabIndex = 3;
+            // 
+            // timer_refresh
+            // 
+            this.timer_refresh.Enabled = true;
+            this.timer_refresh.Interval = 15;
+            this.timer_refresh.Tick += new System.EventHandler(this.timer_refresh_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.ClientSize = new System.Drawing.Size(874, 467);
+            this.ClientSize = new System.Drawing.Size(874, 460);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel_top);
@@ -343,5 +354,6 @@
         private Button button11;
         private Button button10;
         private Panel panel1;
+        private System.Windows.Forms.Timer timer_refresh;
     }
 }

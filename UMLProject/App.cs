@@ -9,17 +9,31 @@ namespace UMLProject
 {
     public class App
     {
-        private List<Component> components = new List<Component>() { new PaintingArea() };
+        PaintingArea area = new PaintingArea();
 
         public void Draw(Graphics g)
         {
-            components.ForEach(c => c.Draw(g));
+            area.Draw(g);
+        }
+
+        public void MouseMove(int x, int y)
+        {
+            area.MouseMove(x, y);
+        }
+        
+        public void MouseDown(int x, int y)
+        {
+            area.MouseDown(x, y);
+        }
+        
+        public void MouseUp(int x, int y)
+        {
+            area.MouseUp(x, y);
         }
 
         public App()
         {
             
-            ResizableButton v = new ResizableButton(Enums.Arrows.Horizontal, (x, y) => { }, 50, 50);
         }
     }
 }
