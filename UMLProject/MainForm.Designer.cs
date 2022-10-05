@@ -72,7 +72,7 @@
             this.panel_top.Controls.Add(this.button4);
             this.panel_top.Location = new System.Drawing.Point(0, 0);
             this.panel_top.Name = "panel_top";
-            this.panel_top.Size = new System.Drawing.Size(874, 76);
+            this.panel_top.Size = new System.Drawing.Size(684, 76);
             this.panel_top.TabIndex = 0;
             // 
             // button_dependency
@@ -237,10 +237,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_drawing_area.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.pictureBox_drawing_area.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_drawing_area.Name = "pictureBox_drawing_area";
-            this.pictureBox_drawing_area.Size = new System.Drawing.Size(874, 379);
+            this.pictureBox_drawing_area.Size = new System.Drawing.Size(672, 362);
             this.pictureBox_drawing_area.TabIndex = 1;
             this.pictureBox_drawing_area.TabStop = false;
             this.pictureBox_drawing_area.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_drawing_area_Paint);
@@ -304,7 +303,7 @@
             this.panel1.Controls.Add(this.pictureBox_drawing_area);
             this.panel1.Location = new System.Drawing.Point(0, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(874, 379);
+            this.panel1.Size = new System.Drawing.Size(684, 373);
             this.panel1.TabIndex = 3;
             // 
             // timer_refresh
@@ -318,11 +317,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.ClientSize = new System.Drawing.Size(874, 460);
+            this.ClientSize = new System.Drawing.Size(684, 452);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel_top);
-            this.MinimumSize = new System.Drawing.Size(800, 450);
+            this.MinimumSize = new System.Drawing.Size(700, 450);
             this.Name = "MainForm";
             this.Text = "UML Design";
             this.panel_top.ResumeLayout(false);

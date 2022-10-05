@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UMLProject.Enums;
+using UMLProject.Models;
 
 namespace UMLProject.Components
 {

@@ -16,9 +16,20 @@ namespace UMLProject.Components
             int w = this.Width;
             int h = this.Height;
 
-            ResizableButton vertical = new ResizableButton(w / 2 + X, h + Y, (x, y) => this.Height += y);
-            ResizableButton horizontal = new ResizableButton(w, h / 2 + Y, (x, y) => this.Width += x);
-            ResizableButton combined = new ResizableButton(w + X, h + Y, (x, y) => { this.Width += x; this.Height += y; });
+            ResizableButton vertical = new ResizableButton(w / 2 + X, h + Y, (x, y) =>
+            {
+                this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
+            });
+
+            ResizableButton horizontal = new ResizableButton(w, h / 2 + Y, (x, y) =>
+            {
+                this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
+            });
+            ResizableButton combined = new ResizableButton(w + X, h + Y, (x, y) => 
+            {
+                this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
+                this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
+            });
 
             buttons.Add(Arrows.Vertical, vertical);
             buttons.Add(Arrows.Horizontal, horizontal);
@@ -47,7 +58,7 @@ namespace UMLProject.Components
 
         ResizableButton active;
 
-        public void MouseDown(int x, int y)
+        public virtual void MouseDown(int x, int y)
         {
             active = buttons.Where(b => b.Value.IsInArea(x, y)).First().Value;
 
@@ -57,7 +68,7 @@ namespace UMLProject.Components
             active.MouseDown(x, y);
         }
 
-        public void MouseMove(int x, int y)
+        public virtual void MouseMove(int x, int y)
         {
             buttons.ToList().ForEach(b => b.Value.IsInArea(x, y));
 
@@ -68,7 +79,7 @@ namespace UMLProject.Components
             UpdateResizeArrows();
         }
 
-        public void MouseUp(int x, int y)
+        public virtual void MouseUp(int x, int y)
         {
             if (active == null)
                 return;

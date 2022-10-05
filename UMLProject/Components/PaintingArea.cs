@@ -15,8 +15,10 @@ namespace UMLProject.Components
         {
             this.X = 5;
             this.Y = 5;
-            this.Width = 400;
-            this.Height = 250;
+            this.Width = 480;
+            this.Height = 270;
+            this.MinWidth = 160;
+            this.MinHeight = 90;
 
             UpdateResizeArrows();
         }
@@ -27,9 +29,19 @@ namespace UMLProject.Components
             base.Draw(g);
         }
 
-        public void Update()
+        public override void MouseDown(int x, int y)
         {
-            
+            base.MouseDown(x, y);
+        }
+
+        public override void MouseMove(int x, int y)
+        {
+            base.MouseMove(x, y);
+        }
+
+        public override void MouseUp(int x, int y)
+        {
+            base.MouseUp(x, y);
         }
     }
 }
