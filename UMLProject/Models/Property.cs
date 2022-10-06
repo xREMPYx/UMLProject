@@ -7,12 +7,8 @@ using UMLProject.Enums;
 
 namespace UMLProject.Models
 {
-    public class Property
-    {
-        public string Name { get; set; }
-        public AccessModifier Access { get; set; }
-        public string ReturnType { get; set; }
-
+    public class Property : BoxElement
+    {        
         public override string ToString()
         {
             string s = Access == AccessModifier.Private

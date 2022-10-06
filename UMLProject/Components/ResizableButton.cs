@@ -12,14 +12,12 @@ namespace UMLProject.Components
     {
         private Action<int, int> func;
 
-        private Pen pen = Pens.Black;
-
         private MouseState mouseState;
 
         public ResizableButton(int x, int y, Action<int, int> func)
         {
-            Width = 6;
-            Height = 6;
+            this.Width = 6;
+            this.Height = 6;
 
             this.func = func;
 
@@ -28,40 +26,27 @@ namespace UMLProject.Components
 
         public override void Draw(Graphics g)
         {
-            if (IsVisible == false)
+            if (this.IsVisible == false)
                 return;
 
-            g.FillRectangle(Brushes.White, X - Width, Y - Height, Width, Height);
-            g.DrawRectangle(pen, X - Width, Y - Height, Width, Height);
-        }
-
-        public bool IsInArea(int x, int y)
-        {
-            bool result = Enumerable.Range(X - Width, Width).Contains(x)
-                          && Enumerable.Range(Y - Height, Height).Contains(y);
-
-            pen = result == true ? Pens.DarkBlue : Pens.Black;
-
-            return result;
+            g.FillRectangle(Brushes.White, X, Y, Width, Height);
+            g.DrawRectangle(IsActivePen, X, Y, Width, Height);
         }
 
         public void UpdateLocation(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         Location mouseDown;
         public void MouseDown(int x, int y)
         {
-            mouseState = MouseState.Down;
+            this.mouseState = MouseState.Down;
 
-            Location location = new Location()
-            {
-                X = x,
-                Y = y
-            };
-            mouseDown = location;
+            Location location = new Location(x, y);
+
+            this.mouseDown = location;
         }
 
         //Location mouseHover;
@@ -70,19 +55,15 @@ namespace UMLProject.Components
             if (mouseState == MouseState.Up)
                 return;
 
-            Location location = new Location()
-            {
-                X = x,
-                Y = y
-            };
-            
-            func(x - mouseDown.X, y - mouseDown.Y);
-            mouseDown = location;
+            Location location = new Location(x, y);
+
+            this.func(x - mouseDown.X, y - mouseDown.Y);
+            this.mouseDown = location;
         }
 
         public void MouseUp(int x, int y)
         {
-            mouseState = MouseState.Up;
+            this.mouseState = MouseState.Up;
         }
     }
 }

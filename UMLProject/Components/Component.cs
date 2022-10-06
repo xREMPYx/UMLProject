@@ -18,7 +18,9 @@ namespace UMLProject.Components
         public int MinHeight { get; set; }
         public bool IsVisible { get; set; } = true;
         public bool IsSelected { get; set; } = true;
-        
+        protected Pen IsActivePen { get; set; } = Pens.Black;
+        protected Font Font { get; set; } = new Font("Arial", 16);
+
         public virtual void Draw(Graphics g) { }
         public virtual void Move() { }
 
@@ -26,6 +28,16 @@ namespace UMLProject.Components
         {
             this.Width = width;
             this.Height = height;
+        }
+
+        public bool IsInArea(int x, int y)
+        {
+            bool result = Enumerable.Range(X/* - Width*/, Width).Contains(x)
+                          && Enumerable.Range(Y /*- Height*/, Height).Contains(y);
+
+            IsActivePen = result == true ? Pens.DarkBlue : Pens.Black;
+
+            return result;
         }
     }
 }

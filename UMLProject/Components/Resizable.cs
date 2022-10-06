@@ -51,7 +51,7 @@ namespace UMLProject.Components
             ResizableButton horizontal = buttons[Arrows.Horizontal];
             ResizableButton combined = buttons[Arrows.Combined];
 
-            vertical.UpdateLocation(w / 2, h + Y);
+            vertical.UpdateLocation(w / 2 + X, h + Y);
             horizontal.UpdateLocation(w + X, h / 2 + Y);
             combined.UpdateLocation(w + X, h + Y);
         }
@@ -60,7 +60,9 @@ namespace UMLProject.Components
 
         public virtual void MouseDown(int x, int y)
         {
-            active = buttons.Where(b => b.Value.IsInArea(x, y)).First().Value;
+            UpdateResizeArrows();
+
+            active = buttons.Where(b => b.Value.IsInArea(x, y)).FirstOrDefault().Value;
 
             if (active == null)
                 return;
@@ -69,14 +71,15 @@ namespace UMLProject.Components
         }
 
         public virtual void MouseMove(int x, int y)
-        {
+        {            
+            UpdateResizeArrows();
+
             buttons.ToList().ForEach(b => b.Value.IsInArea(x, y));
 
             if (active == null)
                 return;
 
             active.MouseMove(x, y);
-            UpdateResizeArrows();
         }
 
         public virtual void MouseUp(int x, int y)
@@ -85,7 +88,20 @@ namespace UMLProject.Components
                 return;
 
             active.MouseUp(x, y);
+
             UpdateResizeArrows();
+        }
+
+        protected bool IsAnyArrowInLocation(int x, int y)
+        {
+            bool res = false;
+
+            foreach (var r in buttons.Values)
+            {
+                res = r.IsInArea(x, y);
+            }
+
+            return res;
         }
     }
 }
