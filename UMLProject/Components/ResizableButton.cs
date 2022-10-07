@@ -16,8 +16,8 @@ namespace UMLProject.Components
 
         public ResizableButton(int x, int y, Action<int, int> func)
         {
-            this.Width = 6;
-            this.Height = 6;
+            this.Width = 20;
+            this.Height = 20;
 
             this.func = func;
 
@@ -26,11 +26,11 @@ namespace UMLProject.Components
 
         public override void Draw(Graphics g)
         {
-            if (this.IsVisible == false)
+            if (this.IsSelected == false)
                 return;
 
-            g.FillRectangle(Brushes.White, X, Y, Width, Height);
-            g.DrawRectangle(IsActivePen, X, Y, Width, Height);
+            g.FillRectangle(Brushes.White, X - Width / 2, Y - Height / 2, Width, Height);
+            g.DrawRectangle(IsActivePen, X - Width / 2, Y - Height / 2, Width, Height);
         }
 
         public void UpdateLocation(int x, int y)
@@ -41,7 +41,7 @@ namespace UMLProject.Components
 
         Location mouseDown;
         public void MouseDown(int x, int y)
-        {
+        {            
             this.mouseState = MouseState.Down;
 
             Location location = new Location(x, y);
@@ -52,18 +52,28 @@ namespace UMLProject.Components
         //Location mouseHover;
         public void MouseMove(int x, int y)
         {
-            if (mouseState == MouseState.Up)
-                return;
+            if (mouseState == MouseState.Down)
+            {
+                Location location = new Location(x, y);
 
-            Location location = new Location(x, y);
-
-            this.func(x - mouseDown.X, y - mouseDown.Y);
-            this.mouseDown = location;
+                this.func(x - mouseDown.X, y - mouseDown.Y);
+                this.mouseDown = location;
+            }
         }
 
         public void MouseUp(int x, int y)
         {
             this.mouseState = MouseState.Up;
+        }
+
+        public override bool IsInArea(int x, int y)
+        {
+            bool result = Enumerable.Range(X - Width / 2, Width).Contains(x)
+                          && Enumerable.Range(Y - Height / 2, Height).Contains(y);
+
+            IsActivePen = result == true ? Pens.DarkBlue : Pens.Black;
+
+            return result;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace UMLProject.Components
         public int MaxHeight { get; set; }
         public int MinWidth { get; set; }
         public int MinHeight { get; set; }
-        public bool IsVisible { get; set; } = true;
         public bool IsSelected { get; set; } = true;
         protected Pen IsActivePen { get; set; } = Pens.Black;
         protected Font Font { get; set; } = new Font("Arial", 16);
@@ -30,7 +29,7 @@ namespace UMLProject.Components
             this.Height = height;
         }
 
-        public bool IsInArea(int x, int y)
+        public virtual bool IsInArea(int x, int y)
         {
             bool result = Enumerable.Range(X/* - Width*/, Width).Contains(x)
                           && Enumerable.Range(Y /*- Height*/, Height).Contains(y);

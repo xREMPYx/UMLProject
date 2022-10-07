@@ -40,6 +40,8 @@ namespace UMLProject.Components
         Location mouseDown;
         public override void MouseDown(int x, int y)
         {
+            base.MouseDown(x, y);
+
             this.mouseState = MouseState.Down;
 
             Location location = new Location()
@@ -48,36 +50,36 @@ namespace UMLProject.Components
                 Y = y
             };
 
-            mouseDown = location;
-
-            base.MouseDown(x, y);
+            mouseDown = location;  
         }
 
         public override void MouseMove(int x, int y)
         {
-            this.IsInArea(x, y);
-
-            if(this.mouseState == MouseState.Up)
-                return;
-
-            if (!this.IsAnyArrowInLocation(x, y))
-            {
-                this.X -= mouseDown.X - x;
-                this.Y -= mouseDown.Y - y;
-
-                mouseDown = new Location(x,y);
-            }
-
             UpdateResizeArrows();
 
             base.MouseMove(x, y);
+
+            this.IsInArea(x, y);
+
+            if(this.mouseState == MouseState.Down)
+            {
+                if (!this.IsAnyArrowInLocation(x, y))
+                {
+                    this.X -= mouseDown.X - x;
+                    this.Y -= mouseDown.Y - y;
+
+                    mouseDown = new Location(x, y);
+                }
+            }
         }
 
         public override void MouseUp(int x, int y)
         {
-            this.mouseState = MouseState.Up;
+            UpdateResizeArrows();
 
             base.MouseUp(x, y);
+
+            this.mouseState = MouseState.Up; 
         }
     }
 }

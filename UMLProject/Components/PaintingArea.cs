@@ -38,12 +38,18 @@ namespace UMLProject.Components
 
             base.Draw(g);
         }
-
+        int s = 0;
         public override void MouseDown(int x, int y)
         {
+            if(s++ == 0)
             Add(x, y);
 
-            boxes.ForEach(b => b.MouseDown(x, y));
+            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x, y)).FirstOrDefault();
+
+            if (active != null)
+                active.MouseDown(x, y);
+
+            //boxes.ForEach(b => b.MouseDown(x, y));
 
             
             base.MouseDown(x, y);
@@ -51,14 +57,24 @@ namespace UMLProject.Components
 
         public override void MouseMove(int x, int y)
         {
-            boxes.ForEach(b => b.MouseMove(x, y));
+            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x,y)).FirstOrDefault();
+
+            if (active != null)
+                active.MouseMove(x, y);
+
+            //boxes.ForEach(b => b.MouseMove(x, y));
 
             base.MouseMove(x, y);
         }
 
         public override void MouseUp(int x, int y)
         {
-            boxes.ForEach(b => b.MouseUp(x, y));
+            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x, y)).FirstOrDefault();
+
+            if (active != null)
+                active.MouseUp(x, y);
+
+            //boxes.ForEach(b => b.MouseUp(x, y));
 
             base.MouseUp(x, y);
         }
