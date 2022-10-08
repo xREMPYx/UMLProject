@@ -16,8 +16,8 @@ namespace UMLProject.Components
 
         public ResizableButton(int x, int y, Action<int, int> func)
         {
-            this.Width = 20;
-            this.Height = 20;
+            this.Width = 14;
+            this.Height = 14;
 
             this.func = func;
 
@@ -75,5 +75,7 @@ namespace UMLProject.Components
 
             return result;
         }
+
+        public void ClearMouseState() => mouseState = MouseState.Up;
     }
 }

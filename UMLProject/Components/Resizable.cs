@@ -16,23 +16,23 @@ namespace UMLProject.Components
             int w = this.Width;
             int h = this.Height;
 
-            //ResizableButton vertical = new ResizableButton(w / 2 + X, h + Y, (x, y) =>
-            //{
-            //    this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
-            //});
+            ResizableButton vertical = new ResizableButton(w / 2 + X, h + Y, (x, y) =>
+            {
+                this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
+            });
 
-            //ResizableButton horizontal = new ResizableButton(w + X, h / 2 + Y, (x, y) =>
-            //{
-            //    this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
-            //});
+            ResizableButton horizontal = new ResizableButton(w + X, h / 2 + Y, (x, y) =>
+            {
+                this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
+            });
             ResizableButton combined = new ResizableButton(w + X, h + Y, (x, y) => 
             {
                 this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
                 this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
             });
 
-            //buttons.Add(Arrows.Vertical, vertical);
-            //buttons.Add(Arrows.Horizontal, horizontal);
+            buttons.Add(Arrows.Vertical, vertical);
+            buttons.Add(Arrows.Horizontal, horizontal);
             buttons.Add(Arrows.Combined, combined);
         }
 
@@ -47,12 +47,12 @@ namespace UMLProject.Components
             int w = this.Width;
             int h = this.Height;
 
-            //ResizableButton vertical = buttons[Arrows.Vertical];
-            //ResizableButton horizontal = buttons[Arrows.Horizontal];
+            ResizableButton vertical = buttons[Arrows.Vertical];
+            ResizableButton horizontal = buttons[Arrows.Horizontal];
             ResizableButton combined = buttons[Arrows.Combined];
 
-            //vertical.UpdateLocation(w / 2 + X, h + Y);
-            //horizontal.UpdateLocation(w + X, h / 2 + Y);
+            vertical.UpdateLocation(w / 2 + X, h + Y);
+            horizontal.UpdateLocation(w + X, h / 2 + Y);
             combined.UpdateLocation(w + X, h + Y);
         }
 
@@ -101,7 +101,11 @@ namespace UMLProject.Components
                 res = r.IsInArea(x, y);
             }
 
+            //return true; 
+
             return res;
         }
+
+        public virtual void ClearMouseState() => buttons.ToList().ForEach(b => b.Value.ClearMouseState());
     }
 }

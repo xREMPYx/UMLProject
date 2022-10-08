@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UMLProject.Enums;
+using UMLProject.Models;
 
 namespace UMLProject.Components
 {
     public class PaintingArea : Resizable
     {
-        private Component selected;
+        private Component selected = null;
 
         private SolidBrush backColorBrush = new SolidBrush(Color.FromArgb(224, 224, 224));
 
         private List<Box> boxes = new List<Box>();
+
+        public static PaintingAreaSize Size;
 
         public PaintingArea()
         {
@@ -23,6 +26,8 @@ namespace UMLProject.Components
             this.Height = 270;
             this.MinWidth = 160;
             this.MinHeight = 90;
+
+            Size = new PaintingAreaSize(Width, Height);
 
             UpdateResizeArrows();
         }
@@ -38,55 +43,76 @@ namespace UMLProject.Components
 
             base.Draw(g);
         }
-        int s = 0;
+
         public override void MouseDown(int x, int y)
         {
-            if(s++ == 0)
-            Add(x, y);
+            
 
-            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x, y)).FirstOrDefault();
+            Box active = boxes
+                .Where(b => b.IsInArea(x, y) || (b.IsAnyArrowInLocation(x, y) && b.IsSelected))
+                .LastOrDefault();
+
+            boxes.Where(b => !b.IsInArea(x, y))
+                .ToList()
+                .ForEach(b => b.SetUnSelected());
 
             if (active != null)
+            {
                 active.MouseDown(x, y);
+            }
 
-            //boxes.ForEach(b => b.MouseDown(x, y));
+            if (selected != null)
+            {
+                BoxForm form = new BoxForm(x, y);
 
-            
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    boxes.Add(form.Box);
+                    selected = null;
+                }
+            }
+
             base.MouseDown(x, y);
+
+            Size = new PaintingAreaSize(Width, Height);
         }
 
         public override void MouseMove(int x, int y)
         {
-            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x,y)).FirstOrDefault();
+            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x,y))
+                .LastOrDefault();
 
             if (active != null)
                 active.MouseMove(x, y);
 
-            //boxes.ForEach(b => b.MouseMove(x, y));
+            SizeF s = SizeF.Empty;
+
+            foreach (Box b in boxes)
+            {
+                int w = b.X + b.Width;
+
+                int h = b.Y + b.Height;
+
+                if (w > s.Width)
+                    s.Width = w;
+
+                if (h > s.Height)
+                    s.Height = h;
+            }
+
+            this.MinWidth = (int)s.Width;
+            this.MinHeight = (int)s.Height;            
 
             base.MouseMove(x, y);
         }
 
         public override void MouseUp(int x, int y)
         {
-            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x, y)).FirstOrDefault();
-
-            if (active != null)
-                active.MouseUp(x, y);
-
-            //boxes.ForEach(b => b.MouseUp(x, y));
+            boxes.ForEach(b => b.ClearMouseState());
 
             base.MouseUp(x, y);
         }
 
         public void SetSelected(Component component) => selected = component;
-
-        public void Add(int x, int y)
-        {
-            Box b = new Box("Krabice", AccessModifier.Public, BoxType.Abstract, new List<Models.Method>(), new());
-            b.X = x;
-            b.Y = y;
-            boxes.Add(b);
-        }
     }
 }

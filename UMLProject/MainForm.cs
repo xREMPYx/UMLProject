@@ -1,3 +1,5 @@
+using UMLProject.Components;
+
 namespace UMLProject
 {
     public partial class MainForm : Form
@@ -40,6 +42,11 @@ namespace UMLProject
         private void pictureBox_drawing_area_MouseMove(object sender, MouseEventArgs e)
         {
             this.application.MouseMove(e.X, e.Y);
+        }
+
+        private void button_box_Click(object sender, EventArgs e)
+        {
+            this.application.Select(new Box());
         }
     }
 }

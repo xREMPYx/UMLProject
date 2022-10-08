@@ -118,6 +118,7 @@
             this.button_box.Size = new System.Drawing.Size(94, 34);
             this.button_box.TabIndex = 3;
             this.button_box.UseVisualStyleBackColor = false;
+            this.button_box.Click += new System.EventHandler(this.button_box_Click);
             // 
             // button_composition
             // 

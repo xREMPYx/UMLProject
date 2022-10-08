@@ -31,9 +31,9 @@ namespace UMLProject
             area.MouseUp(x, y);
         }
 
-        public App()
+        public void Select(Component component)
         {
-            
+            area.SetSelected(component);
         }
     }
 }
