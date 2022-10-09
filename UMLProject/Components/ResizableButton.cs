@@ -75,6 +75,8 @@ namespace UMLProject.Components
             return result;
         }
 
+        public void UpdateFunc(Action<int, int> func) => this.func = func;
+
         public void ClearMouseState() => mouseState = MouseState.Up;
     }
 }

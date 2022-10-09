@@ -39,6 +39,7 @@ namespace UMLProject.Components
             this.MinHeight = (int)min.Height;
 
             UpdateResizeArrows();
+            UpdateResizeFunc(Resize);
         }
 
         public override void Draw(Graphics g)
@@ -102,8 +103,8 @@ namespace UMLProject.Components
                     this.X -= mouseDown.X - x;
                     this.Y -= mouseDown.Y - y;
 
-                    Location max = this.MaxLocation();
-                    Location min = this.MinLocation();
+                    Location max = this.GetMaxLocation();
+                    Location min = this.GetMinLocation();
 
                     if (this.X > max.X)
                         X = max.X;
@@ -137,14 +138,14 @@ namespace UMLProject.Components
             mouseState = MouseState.Up;
         }
 
-        public Location MaxLocation()
+        public Location GetMaxLocation()
         {
             PaintingAreaSize s = PaintingArea.Size;
 
             return new Location(s.Width + s.X - Width, s.Height + s.Y - Height);
         }
 
-        public Location MinLocation() => new Location(5, 5);
+        public Location GetMinLocation() => new Location(5, 5);
 
         public void SetUnSelected() => this.IsSelected = false;
 
@@ -156,6 +157,33 @@ namespace UMLProject.Components
 
             this.MinWidth = (int)min.Width;
             this.MinHeight = (int)min.Height;
+        }
+
+        //Updated func for resize
+        private void Resize(int x, int y)
+        {
+            Location max = GetMaxLocation();
+
+            int tmpW = this.Width;
+            int tmpH = this.Height;
+
+            int w = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
+            int h = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
+            
+            this.Width = w;
+            this.Height = h;
+
+            PaintingAreaSize size = PaintingArea.Size;
+
+            if(X + Width > (int)size.Width + size.X)
+            {
+                this.Width = tmpW;
+            }
+
+            if (Y + Height > (int)size.Height + size.Y)
+            {
+                this.Height = tmpH;
+            }
         }
     }
 }

@@ -16,11 +16,13 @@ namespace UMLProject.Components
             int w = this.Width;
             int h = this.Height;
 
-            combined = new ResizableButton(w + X, h + Y, (x, y) => 
+            combined = new ResizableButton(w + X, h + Y, Resize);
+
+            void Resize(int x, int y)
             {
                 this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
                 this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
-            });
+            }
         }
 
         public override void Draw(Graphics g)
@@ -72,6 +74,8 @@ namespace UMLProject.Components
                 active.MouseUp(x, y);
             }           
         }
+
+        protected void UpdateResizeFunc(Action<int, int> func) => this.combined.UpdateFunc(func);
 
         public bool IsResizeActive() => combined.mouseState == MouseState.Down;
 
