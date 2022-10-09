@@ -11,13 +11,12 @@ namespace UMLProject.Components
     public class ResizableButton : Component
     {
         private Action<int, int> func;
-
-        private MouseState mouseState;
+        public MouseState mouseState { get; private set; }
 
         public ResizableButton(int x, int y, Action<int, int> func)
         {
-            this.Width = 14;
-            this.Height = 14;
+            this.Width = 18;
+            this.Height = 18;
 
             this.func = func;
 

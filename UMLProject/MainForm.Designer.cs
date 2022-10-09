@@ -247,7 +247,7 @@
             this.pictureBox_drawing_area.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDoubleClick);
             this.pictureBox_drawing_area.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDown);
             this.pictureBox_drawing_area.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseMove);
-            this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);
+            this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);            
             // 
             // panel2
             // 
@@ -323,9 +323,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel_top);
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(700, 450);
             this.Name = "MainForm";
             this.Text = "UML Design";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.panel_top.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).EndInit();
             this.panel2.ResumeLayout(false);

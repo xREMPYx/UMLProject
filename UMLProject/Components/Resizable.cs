@@ -9,37 +9,24 @@ namespace UMLProject.Components
 {
     public abstract class Resizable : Component
     {
-        private Dictionary<Arrows, ResizableButton> buttons = new();
+        private ResizableButton combined { get; set; }
 
         public Resizable()
         {
             int w = this.Width;
             int h = this.Height;
 
-            ResizableButton vertical = new ResizableButton(w / 2 + X, h + Y, (x, y) =>
-            {
-                this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
-            });
-
-            ResizableButton horizontal = new ResizableButton(w + X, h / 2 + Y, (x, y) =>
-            {
-                this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
-            });
-            ResizableButton combined = new ResizableButton(w + X, h + Y, (x, y) => 
+            combined = new ResizableButton(w + X, h + Y, (x, y) => 
             {
                 this.Height = this.Height + y < this.MinHeight ? this.MinHeight : this.Height + y;
                 this.Width = this.Width + x < this.MinWidth ? this.MinWidth : this.Width + x;
             });
-
-            buttons.Add(Arrows.Vertical, vertical);
-            buttons.Add(Arrows.Horizontal, horizontal);
-            buttons.Add(Arrows.Combined, combined);
         }
 
         public override void Draw(Graphics g)
         {            
             if(IsSelected)
-                buttons.ToList().ForEach(c => c.Value.Draw(g));            
+                combined.Draw(g);            
         }
 
         public void UpdateResizeArrows()
@@ -47,12 +34,6 @@ namespace UMLProject.Components
             int w = this.Width;
             int h = this.Height;
 
-            ResizableButton vertical = buttons[Arrows.Vertical];
-            ResizableButton horizontal = buttons[Arrows.Horizontal];
-            ResizableButton combined = buttons[Arrows.Combined];
-
-            vertical.UpdateLocation(w / 2 + X, h + Y);
-            horizontal.UpdateLocation(w + X, h / 2 + Y);
             combined.UpdateLocation(w + X, h + Y);
         }
 
@@ -62,7 +43,7 @@ namespace UMLProject.Components
         {
             UpdateResizeArrows();
 
-            active = buttons.Where(b => b.Value.IsInArea(x, y)).LastOrDefault().Value;
+            active = combined.IsInArea(x, y) ? combined : null;
 
             if (active != null)
             {
@@ -73,8 +54,8 @@ namespace UMLProject.Components
         public virtual void MouseMove(int x, int y)
         {
             UpdateResizeArrows();
-            
-            buttons.ToList().ForEach(b => b.Value.IsInArea(x, y));
+
+            combined.IsInArea(x, y);
 
             if (active != null)
             {
@@ -92,20 +73,10 @@ namespace UMLProject.Components
             }           
         }
 
-        public bool IsAnyArrowInLocation(int x, int y)
-        {
-            bool res = false;
+        public bool IsResizeActive() => combined.mouseState == MouseState.Down;
 
-            foreach (var r in buttons.Values)
-            {
-                res = r.IsInArea(x, y);
-            }
+        public bool IsResizeArrowInArea(int x, int y) => combined.IsInArea(x, y);
 
-            //return true; 
-
-            return res;
-        }
-
-        public virtual void ClearMouseState() => buttons.ToList().ForEach(b => b.Value.ClearMouseState());
+        public virtual void ClearMouseState() => combined.ClearMouseState();
     }
 }

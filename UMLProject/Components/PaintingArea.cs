@@ -47,7 +47,7 @@ namespace UMLProject.Components
         public override void MouseDown(int x, int y)
         {
             Box active = boxes
-                .Where(b => b.IsInArea(x, y) || (b.IsAnyArrowInLocation(x, y) && b.IsSelected))
+                .Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
                 .LastOrDefault();
 
             boxes.Where(b => !b.IsInArea(x, y))
@@ -77,7 +77,7 @@ namespace UMLProject.Components
 
         public override void MouseMove(int x, int y)
         {
-            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsAnyArrowInLocation(x,y))
+            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsResizeArrowInArea(x,y))
                 .LastOrDefault();
 
             if (active != null)
@@ -133,6 +133,11 @@ namespace UMLProject.Components
             boxes.ForEach(b => b.ClearMouseState());
 
             base.MouseUp(x, y);
+        }
+
+        public void Delete()
+        {
+            boxes = boxes.Where(b => !b.IsSelected).ToList();
         }
 
         public void SetSelected(Component component) => selected = component;

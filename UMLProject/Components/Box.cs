@@ -97,7 +97,7 @@ namespace UMLProject.Components
 
             if (this.mouseState == MouseState.Down)
             {
-                if (!this.IsAnyArrowInLocation(x, y))
+                if (!this.IsResizeArrowInArea(x, y) && !this.IsResizeActive())
                 {
                     this.X -= mouseDown.X - x;
                     this.Y -= mouseDown.Y - y;

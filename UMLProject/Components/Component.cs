@@ -37,8 +37,8 @@ namespace UMLProject.Components
 
         public virtual bool IsInArea(int x, int y)
         {
-            bool result = Enumerable.Range(X/* - Width*/, Width).Contains(x)
-                          && Enumerable.Range(Y /*- Height*/, Height).Contains(y);
+            bool result = Enumerable.Range(X, Width).Contains(x)
+                          && Enumerable.Range(Y, Height).Contains(y);
 
             IsActivePen = result == true ? Pens.DarkBlue : Pens.Black;
 

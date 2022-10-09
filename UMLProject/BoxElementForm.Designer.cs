@@ -56,6 +56,7 @@
             // 
             // comboBox_modifier
             // 
+            this.comboBox_modifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_modifier.FormattingEnabled = true;
             this.comboBox_modifier.Location = new System.Drawing.Point(94, 70);
             this.comboBox_modifier.Name = "comboBox_modifier";
@@ -120,6 +121,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_name);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "BoxElementForm";
             this.Text = "BoxElementForm";
             this.ResumeLayout(false);

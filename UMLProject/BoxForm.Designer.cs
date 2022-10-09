@@ -102,6 +102,7 @@
             // 
             // comboBox_type
             // 
+            this.comboBox_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_type.FormattingEnabled = true;
             this.comboBox_type.Location = new System.Drawing.Point(91, 41);
             this.comboBox_type.Name = "comboBox_type";
@@ -110,6 +111,7 @@
             // 
             // comboBox_modifier
             // 
+            this.comboBox_modifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_modifier.FormattingEnabled = true;
             this.comboBox_modifier.Location = new System.Drawing.Point(91, 70);
             this.comboBox_modifier.Name = "comboBox_modifier";
@@ -213,6 +215,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_confirm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BoxForm";
             this.Text = "BoxForm";
             this.ResumeLayout(false);
