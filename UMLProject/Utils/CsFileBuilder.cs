@@ -22,6 +22,7 @@ namespace UMLProject.Utils
             stringBuilder.AppendLine($"{GetAccessModifier(box.Modifier)} {GetType(box.Type)} {box.Name}");
             stringBuilder.AppendLine("{");
 
+
             foreach (Property p in box.Properties)
             {
                 stringBuilder.AppendLine(GetPropertyText(p));
@@ -37,12 +38,12 @@ namespace UMLProject.Utils
 
         private string GetPropertyText(Property p)
         {
-            return $"{GetAccessModifier(p.Modifier)} {p.ReturnType} {p.Name} {"{ get; set; }"}";
+            return $"\n{GetAccessModifier(p.Modifier)} {p.ReturnType} {p.Name} {"{ get; set; }"}\n";
         }
 
         private string GetMethodText(Method m)
         {
-            return $"{GetAccessModifier(m.Modifier)} {m.ReturnType} {m.Name}() {"{}"}";
+            return $"\n{GetAccessModifier(m.Modifier)} {m.ReturnType} {m.Name}() {"{}"}\n";
         }
 
         private string GetAccessModifier(AccessModifier am)

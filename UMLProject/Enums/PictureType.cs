@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace UMLProject.Enums
 {
-    internal class PictureType
+    public enum PictureType
     {
+        JPG,
+        PNG
     }
 }

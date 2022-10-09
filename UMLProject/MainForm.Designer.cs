@@ -42,10 +42,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox_drawing_area = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.button_export = new System.Windows.Forms.Button();
+            this.button_import = new System.Windows.Forms.Button();
+            this.button_generate_code = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             this.panel_top.SuspendLayout();
@@ -257,51 +257,54 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button13);
-            this.panel2.Controls.Add(this.button12);
-            this.panel2.Controls.Add(this.button11);
-            this.panel2.Controls.Add(this.button10);
+            this.panel2.Controls.Add(this.button_export);
+            this.panel2.Controls.Add(this.button_import);
+            this.panel2.Controls.Add(this.button_generate_code);
+            this.panel2.Controls.Add(this.button_save);
             this.panel2.Location = new System.Drawing.Point(0, 78);
             this.panel2.MaximumSize = new System.Drawing.Size(116, 88);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 0);
             this.panel2.TabIndex = 2;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(0,0,0,0);
             // 
-            // button13
+            // button_export
             // 
-            this.button13.Location = new System.Drawing.Point(0, 66);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(117, 23);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Export (json/xml)";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button_export.Location = new System.Drawing.Point(0, 66);
+            this.button_export.Name = "button_export";
+            this.button_export.Size = new System.Drawing.Size(117, 23);
+            this.button_export.TabIndex = 3;
+            this.button_export.Text = "Export (json/xml)";
+            this.button_export.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // button_import
             // 
-            this.button12.Location = new System.Drawing.Point(0, 44);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(117, 23);
-            this.button12.TabIndex = 2;
-            this.button12.Text = "Import (json/xml)";
-            this.button12.UseVisualStyleBackColor = true;
+            this.button_import.Location = new System.Drawing.Point(0, 44);
+            this.button_import.Name = "button_import";
+            this.button_import.Size = new System.Drawing.Size(117, 23);
+            this.button_import.TabIndex = 2;
+            this.button_import.Text = "Import (json/xml)";
+            this.button_import.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // button_generate_code
             // 
-            this.button11.Location = new System.Drawing.Point(0, 22);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(117, 23);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "Generate Code";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button_generate_code.Location = new System.Drawing.Point(0, 22);
+            this.button_generate_code.Name = "button_generate_code";
+            this.button_generate_code.Size = new System.Drawing.Size(117, 23);
+            this.button_generate_code.TabIndex = 1;
+            this.button_generate_code.Text = "Generate Code";
+            this.button_generate_code.UseVisualStyleBackColor = true;            
+            this.button_generate_code.Click += new System.EventHandler(this.button_export_code_Click);
             // 
-            // button10
+            // button_save
             // 
-            this.button10.Location = new System.Drawing.Point(0, 0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(117, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "Save";
-            this.button10.UseVisualStyleBackColor = true;
+            this.button_save.Location = new System.Drawing.Point(0, 0);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(117, 23);
+            this.button_save.TabIndex = 0;
+            this.button_save.Text = "Save";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // panel1
             // 
@@ -358,10 +361,10 @@
         private Button button4;
         private PictureBox pictureBox_drawing_area;
         private Panel panel2;
-        private Button button13;
-        private Button button12;
-        private Button button11;
-        private Button button10;
+        private Button button_export;
+        private Button button_import;
+        private Button button_generate_code;
+        private Button button_save;
         private Panel panel1;
         private System.Windows.Forms.Timer timer_refresh;
     }

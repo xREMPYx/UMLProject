@@ -1,4 +1,6 @@
 using UMLProject.Components;
+using UMLProject.Enums;
+using UMLProject.Utils;
 
 namespace UMLProject
 {
@@ -44,6 +46,8 @@ namespace UMLProject
 
         private void pictureBox_drawing_area_MouseDown(object sender, MouseEventArgs e)
         {
+            this.panel2.Size = this.panel2.MinimumSize;
+
             MakeButtonSelected();
             this.area.MouseDown(e.X, e.Y);
         }
@@ -78,6 +82,45 @@ namespace UMLProject
 
             if(b != null)
                 b.BackColor = Color.White;            
+        }
+
+        //File actions
+
+        private void button_save_Click(object sender, EventArgs e)
+        {            
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            { 
+                saveFileDialog.Filter = "JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {                    
+                    PictureType type = saveFileDialog.FileName.Split(".")[1] == "jpeg"
+                        ? PictureType.JPG 
+                        : PictureType.PNG;
+
+                    PictureBuilder builder = new PictureBuilder(area.Boxes, type);
+
+                    builder.GetPicture().Save(saveFileDialog.FileName);
+                }
+            };
+        }
+
+        private void button_export_code_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string dir = folderBrowserDialog.SelectedPath;
+
+                    foreach (Box b in area.Boxes)
+                    {
+                        CsFileBuilder builder = new CsFileBuilder(b);                        
+
+                        File.WriteAllText($@"{dir}\{b.Name}.cs", builder.GetText());
+                    }
+                }
+            };
         }
 
         //Buttons
