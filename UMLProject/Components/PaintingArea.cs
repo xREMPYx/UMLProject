@@ -10,7 +10,7 @@ namespace UMLProject.Components
 {
     public class PaintingArea : Resizable
     {
-        private Component selected = null;
+        private Component? selected = null;
 
         private SolidBrush backColorBrush = new SolidBrush(Color.FromArgb(224, 224, 224));
 
@@ -44,9 +44,10 @@ namespace UMLProject.Components
             base.Draw(g);
         }
 
+        Box? active;
         public override void MouseDown(int x, int y)
         {
-            Box active = boxes
+            active = boxes
                 .Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
                 .LastOrDefault();
 
@@ -77,9 +78,6 @@ namespace UMLProject.Components
 
         public override void MouseMove(int x, int y)
         {
-            Box active = boxes.Where(b => b.IsInArea(x, y) || b.IsResizeArrowInArea(x,y))
-                .LastOrDefault();
-
             if (active != null)
                 active.MouseMove(x, y);
 
@@ -106,7 +104,7 @@ namespace UMLProject.Components
 
         public void MouseDoubleClick(int x, int y)
         {
-            Box active = boxes.Where(b => b.IsInArea(x, y))
+            active = boxes.Where(b => b.IsInArea(x, y))
                 .LastOrDefault();
 
             if(active != null)
