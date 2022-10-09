@@ -10,7 +10,7 @@ namespace UMLProject.Models
     public abstract class BoxElement
     {
         public string Name { get; set; }
-        public AccessModifier Access { get; set; }
+        public AccessModifier Modifier { get; set; }
         public string ReturnType { get; set; }
     }
 }

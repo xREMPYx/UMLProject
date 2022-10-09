@@ -29,7 +29,7 @@ namespace UMLProject
             InitComboBoxes();
 
             this.comboBox_type.SelectedIndex = (int)box.Type;
-            this.comboBox_modifier.SelectedIndex = (int)box.Access;
+            this.comboBox_modifier.SelectedIndex = (int)box.Modifier;
 
             this.textBox_name.Text = box.Name;
 

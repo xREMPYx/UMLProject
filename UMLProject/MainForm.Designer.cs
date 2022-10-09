@@ -77,7 +77,7 @@
             // 
             // button_dependency
             // 
-            this.button_dependency.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_dependency.BackColor = System.Drawing.Color.DarkGray;
             this.button_dependency.BackgroundImage = global::UMLProject.Properties.Resources.dependencyR;
             this.button_dependency.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_dependency.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -89,10 +89,11 @@
             this.button_dependency.Size = new System.Drawing.Size(34, 34);
             this.button_dependency.TabIndex = 16;
             this.button_dependency.UseVisualStyleBackColor = false;
+            this.button_dependency.Click += new System.EventHandler(this.button_dependency_Click);
             // 
             // button_aggregation
             // 
-            this.button_aggregation.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_aggregation.BackColor = System.Drawing.Color.DarkGray;
             this.button_aggregation.BackgroundImage = global::UMLProject.Properties.Resources.aggregationR;
             this.button_aggregation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_aggregation.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -104,10 +105,11 @@
             this.button_aggregation.Size = new System.Drawing.Size(34, 34);
             this.button_aggregation.TabIndex = 15;
             this.button_aggregation.UseVisualStyleBackColor = false;
+            this.button_aggregation.Click += new System.EventHandler(this.button_aggregation_Click);
             // 
             // button_box
             // 
-            this.button_box.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_box.BackColor = System.Drawing.Color.DarkGray;
             this.button_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_box.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_box.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -122,7 +124,7 @@
             // 
             // button_composition
             // 
-            this.button_composition.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_composition.BackColor = System.Drawing.Color.DarkGray;
             this.button_composition.BackgroundImage = global::UMLProject.Properties.Resources.compositionR;
             this.button_composition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_composition.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -134,10 +136,11 @@
             this.button_composition.Size = new System.Drawing.Size(34, 34);
             this.button_composition.TabIndex = 14;
             this.button_composition.UseVisualStyleBackColor = false;
+            this.button_composition.Click += new System.EventHandler(this.button_composition_Click);
             // 
             // button_association
             // 
-            this.button_association.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_association.BackColor = System.Drawing.Color.DarkGray;
             this.button_association.BackgroundImage = global::UMLProject.Properties.Resources.associationR;
             this.button_association.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_association.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -149,6 +152,7 @@
             this.button_association.Size = new System.Drawing.Size(34, 34);
             this.button_association.TabIndex = 13;
             this.button_association.UseVisualStyleBackColor = false;
+            this.button_association.Click += new System.EventHandler(this.button_association_Click);
             // 
             // button2
             // 
@@ -170,7 +174,7 @@
             // 
             // button_inheritance
             // 
-            this.button_inheritance.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_inheritance.BackColor = System.Drawing.Color.DarkGray;
             this.button_inheritance.BackgroundImage = global::UMLProject.Properties.Resources.inheritanceR;
             this.button_inheritance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_inheritance.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -182,6 +186,7 @@
             this.button_inheritance.Size = new System.Drawing.Size(34, 34);
             this.button_inheritance.TabIndex = 12;
             this.button_inheritance.UseVisualStyleBackColor = false;
+            this.button_inheritance.Click += new System.EventHandler(this.button_inheritance_Click);
             // 
             // button_file
             // 
@@ -201,7 +206,7 @@
             // 
             // button_implementation
             // 
-            this.button_implementation.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.button_implementation.BackColor = System.Drawing.Color.DarkGray;
             this.button_implementation.BackgroundImage = global::UMLProject.Properties.Resources.realization_implementationR;
             this.button_implementation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_implementation.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -213,6 +218,7 @@
             this.button_implementation.Size = new System.Drawing.Size(34, 34);
             this.button_implementation.TabIndex = 11;
             this.button_implementation.UseVisualStyleBackColor = false;
+            this.button_implementation.Click += new System.EventHandler(this.button_implementation_Click);
             // 
             // button4
             // 
@@ -247,7 +253,7 @@
             this.pictureBox_drawing_area.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDoubleClick);
             this.pictureBox_drawing_area.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDown);
             this.pictureBox_drawing_area.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseMove);
-            this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);            
+            this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);
             // 
             // panel2
             // 

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMLProject.Enums
+namespace UMLProject.Utils
 {
-    public enum AccessModifier
+    internal class PictureBuilder
     {
-        Private,
-        Protected,
-        Public     
     }
 }

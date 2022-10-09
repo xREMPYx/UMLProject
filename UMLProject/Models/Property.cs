@@ -11,9 +11,9 @@ namespace UMLProject.Models
     {        
         public override string ToString()
         {
-            string modifier = Access == AccessModifier.Private
+            string modifier = Modifier == AccessModifier.Private
                ? "-"
-               : Access == AccessModifier.Public
+               : Modifier == AccessModifier.Public
                ? "+" : "#";
 
             return $"{modifier}{Name} : {ReturnType}";

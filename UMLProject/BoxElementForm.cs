@@ -30,7 +30,7 @@ namespace UMLProject
         {
             this.element.ReturnType = this.textBox_return_type.Text;
             this.element.Name = this.textBox_name.Text;
-            this.element.Access = (AccessModifier)this.comboBox_modifier.SelectedItem;            
+            this.element.Modifier = (AccessModifier)this.comboBox_modifier.SelectedItem;            
             this.DialogResult = DialogResult.OK;
         }
 

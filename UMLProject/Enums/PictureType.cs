@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace UMLProject.Enums
 {
-    public enum AccessModifier
+    internal class PictureType
     {
-        Private,
-        Protected,
-        Public     
     }
 }

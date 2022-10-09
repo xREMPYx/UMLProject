@@ -11,7 +11,7 @@ namespace UMLProject.Components
     public class Box : Resizable
     {
         public string Name { get; set; }
-        public AccessModifier Access { get; set; }
+        public AccessModifier Modifier { get; set; }
         public BoxType Type { get; set; }
         public List<Method> Methods { get; set; } = new List<Method>();
         public List<Property> Properties { get; set; } = new List<Property>();
@@ -23,7 +23,7 @@ namespace UMLProject.Components
         public Box(string name, AccessModifier modifier, BoxType type, List<Method> methods, List<Property> properties)
         {
             this.Name = name;
-            this.Access = modifier;
+            this.Modifier = modifier;
             this.Type = type;
             this.Methods = methods;
             this.Properties = properties;

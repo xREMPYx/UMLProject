@@ -48,7 +48,6 @@ namespace UMLProject.Components
             this.mouseDown = location;
         }
 
-        //Location mouseHover;
         public void MouseMove(int x, int y)
         {
             if (mouseState == MouseState.Down)

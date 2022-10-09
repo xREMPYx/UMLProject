@@ -28,7 +28,7 @@ namespace UMLProject.Components
         public override void Draw(Graphics g)
         {            
             if(IsSelected)
-                combined.Draw(g);            
+                combined.Draw(g);
         }
 
         public void UpdateResizeArrows()

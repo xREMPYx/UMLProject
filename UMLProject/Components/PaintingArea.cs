@@ -27,7 +27,7 @@ namespace UMLProject.Components
             this.MinWidth = 160;
             this.MinHeight = 90;
 
-            Size = new PaintingAreaSize(Width, Height);
+            PaintingArea.Size = new PaintingAreaSize(Width, Height);
 
             UpdateResizeArrows();
         }
@@ -47,39 +47,46 @@ namespace UMLProject.Components
         Box? active;
         public override void MouseDown(int x, int y)
         {
-            active = boxes
+            this.active = this.boxes
                 .Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
                 .LastOrDefault();
 
-            boxes.Where(b => !b.IsInArea(x, y))
+            this.boxes.Where(b => !b.IsInArea(x, y))
                 .ToList()
                 .ForEach(b => b.SetUnSelected());
 
-            if (active != null)
+            if (this.active != null)
             {
-                active.MouseDown(x, y);
+                this.active.MouseDown(x, y);
             }
 
-            if (selected != null)
+            if (this.selected != null)
             {
                 BoxForm form = new BoxForm(x, y);
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    boxes.Add(form.Box);
-                    selected = null;
+                    Location max = form.Box.GetMaxLocation();
+
+                    form.Box.X = form.Box.X > max.X ? max.X : form.Box.X;
+                    form.Box.Y = form.Box.Y > max.Y ? max.Y : form.Box.Y;
+
+                    this.boxes.Add(form.Box);
+                    this.selected = null;
                 }
             }
 
             base.MouseDown(x, y);
 
-            Size = new PaintingAreaSize(Width, Height);
+            PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
         }
 
         public override void MouseMove(int x, int y)
         {
-            if (active != null)
-                active.MouseMove(x, y);
+            this.boxes.ForEach(b => b.IsInArea(x, y));
+
+            if (this.active != null)
+                this.active.MouseMove(x, y);
 
             SizeF s = SizeF.Empty;
 
@@ -104,40 +111,40 @@ namespace UMLProject.Components
 
         public void MouseDoubleClick(int x, int y)
         {
-            active = boxes.Where(b => b.IsInArea(x, y))
+            this.active = this.boxes.Where(b => b.IsInArea(x, y))
                 .LastOrDefault();
 
-            if(active != null)
+            if(this.active != null)
             {
-                BoxForm form = new BoxForm(active);
+                BoxForm form = new BoxForm(this.active);
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    active.Name = form.Box.Name;
-                    active.Access = form.Box.Access;
-                    active.Type = form.Box.Type;
-                    active.Properties = form.Box.Properties;
-                    active.Methods = form.Box.Methods;
-                    active.Width = form.Box.Width;
-                    active.Height = form.Box.Height;
+                    this.active.Name = form.Box.Name;
+                    this.active.Modifier = form.Box.Modifier;
+                    this.active.Type = form.Box.Type;
+                    this.active.Properties = form.Box.Properties;
+                    this.active.Methods = form.Box.Methods;
+                    this.active.Width = form.Box.Width;
+                    this.active.Height = form.Box.Height;
                 }
 
-                active.UpdateResizeArrows();
+                this.active.UpdateResizeArrows();
             }
         }
 
         public override void MouseUp(int x, int y)
         {
-            boxes.ForEach(b => b.ClearMouseState());
+            this.boxes.ForEach(b => b.ClearMouseState());
 
             base.MouseUp(x, y);
         }
 
         public void Delete()
         {
-            boxes = boxes.Where(b => !b.IsSelected).ToList();
+            this.boxes = this.boxes.Where(b => !b.IsSelected).ToList();
         }
 
-        public void SetSelected(Component component) => selected = component;
+        public void SetSelected(Component component) => this.selected = component;
     }
 }
