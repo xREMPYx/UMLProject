@@ -46,8 +46,6 @@ namespace UMLProject.Components
 
         public override void MouseDown(int x, int y)
         {
-            
-
             Box active = boxes
                 .Where(b => b.IsInArea(x, y) || (b.IsAnyArrowInLocation(x, y) && b.IsSelected))
                 .LastOrDefault();
@@ -104,6 +102,30 @@ namespace UMLProject.Components
             this.MinHeight = (int)s.Height;            
 
             base.MouseMove(x, y);
+        }
+
+        public void MouseDoubleClick(int x, int y)
+        {
+            Box active = boxes.Where(b => b.IsInArea(x, y))
+                .LastOrDefault();
+
+            if(active != null)
+            {
+                BoxForm form = new BoxForm(active);
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    active.Name = form.Box.Name;
+                    active.Access = form.Box.Access;
+                    active.Type = form.Box.Type;
+                    active.Properties = form.Box.Properties;
+                    active.Methods = form.Box.Methods;
+                    active.Width = form.Box.Width;
+                    active.Height = form.Box.Height;
+                }
+
+                active.UpdateResizeArrows();
+            }
         }
 
         public override void MouseUp(int x, int y)

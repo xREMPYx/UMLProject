@@ -31,6 +31,11 @@ namespace UMLProject
             area.MouseUp(x, y);
         }
 
+        public void MouseDoubleClick(int x, int y)
+        {
+            area.MouseDoubleClick(x, y);
+        }
+
         public void Select(Component component)
         {
             area.SetSelected(component);

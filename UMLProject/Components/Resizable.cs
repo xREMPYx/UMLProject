@@ -62,7 +62,7 @@ namespace UMLProject.Components
         {
             UpdateResizeArrows();
 
-            active = buttons.Where(b => b.Value.IsInArea(x, y)).FirstOrDefault().Value;
+            active = buttons.Where(b => b.Value.IsInArea(x, y)).LastOrDefault().Value;
 
             if (active != null)
             {

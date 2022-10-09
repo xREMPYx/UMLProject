@@ -240,10 +240,11 @@
             this.pictureBox_drawing_area.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.pictureBox_drawing_area.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_drawing_area.Name = "pictureBox_drawing_area";
-            this.pictureBox_drawing_area.Size = new System.Drawing.Size(672, 362);
+            this.pictureBox_drawing_area.Size = new System.Drawing.Size(681, 370);
             this.pictureBox_drawing_area.TabIndex = 1;
             this.pictureBox_drawing_area.TabStop = false;
             this.pictureBox_drawing_area.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_drawing_area_Paint);
+            this.pictureBox_drawing_area.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDoubleClick);
             this.pictureBox_drawing_area.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseDown);
             this.pictureBox_drawing_area.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseMove);
             this.pictureBox_drawing_area.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_drawing_area_MouseUp);

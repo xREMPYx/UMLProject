@@ -20,23 +20,45 @@ namespace UMLProject
         private int x;
         private int y;
 
+        public BoxForm(Box box)
+        {
+            InitializeComponent();
+
+            this.Box = box;
+
+            InitComboBoxes();
+
+            this.comboBox_type.SelectedIndex = (int)box.Type;
+            this.comboBox_modifier.SelectedIndex = (int)box.Access;
+
+            this.textBox_name.Text = box.Name;
+
+            this.listBox_methods.Items.AddRange(box.Methods.ToArray());
+            this.listBox_properties.Items.AddRange(box.Properties.ToArray());
+        }
+
         public BoxForm(int x, int y)
         {
             InitializeComponent();
 
-            this.comboBox_modifier.Items.Add(AccessModifier.Public);
-            this.comboBox_modifier.Items.Add(AccessModifier.Private);
-            this.comboBox_modifier.Items.Add(AccessModifier.Protected);
+            InitComboBoxes();
 
-            this.comboBox_type.Items.Add(BoxType.Class);
-            this.comboBox_type.Items.Add(BoxType.Interface);            
-            this.comboBox_type.Items.Add(BoxType.Abstract);
-            
             this.comboBox_type.SelectedIndex = 0;
             this.comboBox_modifier.SelectedIndex = 0;
 
             this.x = x;
             this.y = y;
+        }
+
+        private void InitComboBoxes()
+        {
+            this.comboBox_modifier.Items.Add(AccessModifier.Public);
+            this.comboBox_modifier.Items.Add(AccessModifier.Private);
+            this.comboBox_modifier.Items.Add(AccessModifier.Protected);
+
+            this.comboBox_type.Items.Add(BoxType.Class);
+            this.comboBox_type.Items.Add(BoxType.Interface);
+            this.comboBox_type.Items.Add(BoxType.Abstract);
         }
 
         private void button_confirm_Click(object sender, EventArgs e)

@@ -44,9 +44,14 @@ namespace UMLProject
             this.application.MouseMove(e.X, e.Y);
         }
 
+        private void pictureBox_drawing_area_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.application.MouseDoubleClick(e.X, e.Y);
+        }
+
         private void button_box_Click(object sender, EventArgs e)
         {
             this.application.Select(new Box());
-        }
+        }   
     }
 }
