@@ -13,7 +13,7 @@ namespace UMLProject.Components
         private Component? selected = null;
         public static SolidBrush BackColorBrush { get; } = new SolidBrush(Color.FromArgb(224, 224, 224));
         public static PaintingAreaSize Size { get; set; }
-        public List<Box> Boxes { get; private set; } = new List<Box>();        
+        public List<Box> Boxes { get; private set; } = new List<Box>();     
 
         public PaintingArea()
         {
@@ -44,12 +44,8 @@ namespace UMLProject.Components
         Box? active;
         public override void MouseDown(int x, int y)
         {
-            if(selected == null)
-            {
-                this.active = this.Boxes
-                                .Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
+            this.active = this.Boxes.Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
                                 .LastOrDefault();
-            }
 
             this.Boxes.Where(b => !b.IsInArea(x, y))
                     .ToList()
@@ -88,23 +84,7 @@ namespace UMLProject.Components
             if (this.active != null)
                 this.active.MouseMove(x, y);
 
-            SizeF s = SizeF.Empty;
-
-            foreach (Box b in Boxes)
-            {
-                int w = b.X + b.Width;
-
-                int h = b.Y + b.Height;
-
-                if (w > s.Width)
-                    s.Width = w;
-
-                if (h > s.Height)
-                    s.Height = h;
-            }
-
-            this.MinWidth = (int)s.Width;
-            this.MinHeight = (int)s.Height;            
+            SetMinimalSize();
 
             base.MouseMove(x, y);
         }
@@ -140,6 +120,30 @@ namespace UMLProject.Components
             base.MouseUp(x, y);
         }
 
+        //Sets minimal size of painting area accroding to box locations and sizes
+
+        private void SetMinimalSize()
+        {
+            SizeF min = SizeF.Empty;
+
+            foreach (Box b in Boxes)
+            {
+                int w = b.X + b.Width;
+
+                int h = b.Y + b.Height;
+
+                if (w > min.Width)
+                    min.Width = w;
+
+                if (h > min.Height)
+                    min.Height = h;
+            }
+
+            this.MinWidth = (int)min.Width;
+            this.MinHeight = (int)min.Height;
+        }
+
+        //Deletes selected box
         public void Delete()
         {
             this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();

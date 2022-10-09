@@ -274,8 +274,9 @@
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(117, 23);
             this.button_export.TabIndex = 3;
-            this.button_export.Text = "Export (json/xml)";
+            this.button_export.Text = "Export (json)";
             this.button_export.UseVisualStyleBackColor = true;
+            this.button_export.Click += new System.EventHandler(this.button_export_Click);
             // 
             // button_import
             // 
@@ -283,8 +284,9 @@
             this.button_import.Name = "button_import";
             this.button_import.Size = new System.Drawing.Size(117, 23);
             this.button_import.TabIndex = 2;
-            this.button_import.Text = "Import (json/xml)";
+            this.button_import.Text = "Import (json)";
             this.button_import.UseVisualStyleBackColor = true;
+            this.button_import.Click += new System.EventHandler(this.button_import_Click);
             // 
             // button_generate_code
             // 

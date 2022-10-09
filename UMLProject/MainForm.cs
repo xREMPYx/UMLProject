@@ -6,7 +6,7 @@ namespace UMLProject
 {
     public partial class MainForm : Form
     {
-        private PaintingArea area { get; } = new PaintingArea();
+        private PaintingArea area { get; set; } = new PaintingArea();
         private List<Button> buttons { get; }
 
         public MainForm()
@@ -119,6 +119,36 @@ namespace UMLProject
 
                         File.WriteAllText($@"{dir}\{b.Name}.cs", builder.GetText());
                     }
+                }
+            };
+        }
+
+        private void button_export_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "JSON file (.json)|*.json";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string file = saveFileDialog.FileName;
+
+                    File.WriteAllText(file, Formatter.Serialize(area));
+                }
+            };
+        }
+
+        private void button_import_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string file = openFileDialog.FileName;
+
+                    string text = File.ReadAllText(file);
+
+                    this.area = Formatter.GetPaintingArea(text);
                 }
             };
         }
