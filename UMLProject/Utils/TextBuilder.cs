@@ -7,7 +7,7 @@ using UMLProject.Components;
 using UMLProject.Enums;
 using UMLProject.Models;
 
-namespace UMLProject
+namespace UMLProject.Utils
 {
     public class TextBuilder
     {
@@ -49,7 +49,7 @@ namespace UMLProject
 
             return sb.ToString();
         }
-       
+
         public string GetMethods()
         {
             StringBuilder sb = new StringBuilder();
@@ -63,7 +63,7 @@ namespace UMLProject
         }
 
         public string GetProperties()
-        {            
+        {
             StringBuilder sb = new StringBuilder();
 
             foreach (BoxElement e in box.Properties)
@@ -97,7 +97,7 @@ namespace UMLProject
         {
             string gaps = string.Empty.PadRight((box.Width - (int)Measure.MeasureString(text).Width) / 6);
 
-            return gaps + text + gaps; 
+            return gaps + text + gaps;
         }
 
         private string GetType()

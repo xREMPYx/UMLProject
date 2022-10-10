@@ -5,14 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UMLProject.Enums;
 using UMLProject.Models;
+using UMLProject.Relations;
 
 namespace UMLProject.Components
 {
     public class PaintingArea : Resizable
     {
-        private Component? selected = null;
         public static SolidBrush BackColorBrush { get; } = new SolidBrush(Color.FromArgb(224, 224, 224));
         public static PaintingAreaSize Size { get; set; }
+
+        //
+
+        private Box? selected { get; set; } = null;
+        private Relation? relation { get; set; } = null;        
         public List<Box> Boxes { get; private set; } = new List<Box>();     
 
         public PaintingArea()
@@ -149,6 +154,6 @@ namespace UMLProject.Components
             this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();
         }
 
-        public void SetSelected(Component component) => this.selected = component;
+        public void SelectNewBox(Box box) => this.selected = box;
     }
 }

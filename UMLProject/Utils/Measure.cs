@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using UMLProject.Components;
 using UMLProject.Models;
 
-namespace UMLProject
+namespace UMLProject.Utils
 {
     public static class Measure
     {
         public static SizeF MeasureString(string text)
         {
-            SizeF res = new SizeF(20,20);
+            SizeF res = new SizeF(20, 20);
 
             using (var image = new Bitmap(1, 1))
             {

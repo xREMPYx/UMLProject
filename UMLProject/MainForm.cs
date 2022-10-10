@@ -163,7 +163,7 @@ namespace UMLProject
         private void button_box_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
-            this.area.SetSelected(new Box());
+            this.area.SelectNewBox(new Box());
         }
 
         private void button_composition_Click(object sender, EventArgs e)
