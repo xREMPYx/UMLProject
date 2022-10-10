@@ -14,12 +14,12 @@ namespace UMLProject.Relations
         public int StartY { get; set; }
         public int EndX { get; set; }
         public int EndY { get; set; }
-        public static Pen Pen() => new Pen(Brushes.Black, 2);
+        public static Pen GetPen() => new Pen(Brushes.Black, 2);
 
         public abstract void Draw(Graphics g);
         
         public Relation(int sX, int sY)
-        {
+        {            
             this.StartX = sX;
             this.StartY = sY;
             this.EndX = sX;

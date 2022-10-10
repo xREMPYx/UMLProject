@@ -16,8 +16,6 @@ namespace UMLProject.Relations
 
         public override void Draw(Graphics g)
         {
-            
-
             using (GraphicsPath capPath = new GraphicsPath())
             {
                 // A triangle
@@ -25,14 +23,14 @@ namespace UMLProject.Relations
                 capPath.AddLine(-10, 0, 0, 10);
                 capPath.AddLine(0, 10, 10, 0);
 
-                Pen p = Relation.Pen();
+                Pen p = Relation.GetPen();
 
-                p.CustomEndCap = new System.Drawing.Drawing2D.CustomLineCap(null, capPath);
+                p.CustomEndCap = new CustomLineCap(null, capPath);
 
                 g.DrawLine(p, StartX, StartY, EndX, EndY);
             };
 
-            g.DrawLine(Relation.Pen(), StartX, StartY, EndX, EndY);
+            g.DrawLine(Relation.GetPen(), StartX, StartY, EndX, EndY);
         }
     }
 }

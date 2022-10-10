@@ -155,5 +155,7 @@ namespace UMLProject.Components
         }
 
         public void SelectNewBox(Box box) => this.selected = box;
+
+        public void SelectNewRelation(Relation relation) => this.relation = relation;
     }
 }
