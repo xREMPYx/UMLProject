@@ -9,6 +9,8 @@ namespace UMLProject.Models
 {
     public class Method : BoxElement
     {
+        public string Parameters { get; set; }
+
         public override string ToString()
         {
             string modifier = Modifier == AccessModifier.Private 
@@ -17,7 +19,7 @@ namespace UMLProject.Models
                 ? "+" : "#";
 
 
-            return $"{modifier}{Name}() : {ReturnType}";
+            return $"{modifier}{Name}({Parameters}) : {ReturnType}";
         }
     }
 }

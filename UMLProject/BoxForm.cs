@@ -92,12 +92,10 @@ namespace UMLProject
 
         private void button_property_add_Click(object sender, EventArgs e)
         {
-            Property p = new Property();
-
-            BoxElementForm form = new BoxElementForm(p);
+            BoxElementForm form = new BoxElementForm(BoxElementType.Property);
 
             if(form.ShowDialog() == DialogResult.OK)
-                this.listBox_properties.Items.Add(p);
+                this.listBox_properties.Items.Add(form.Element);
         }
 
         private void button_delete_Click(object sender, EventArgs e)
@@ -114,12 +112,10 @@ namespace UMLProject
 
         private void button_method_add_Click(object sender, EventArgs e)
         {
-            Method m = new Method();
-
-            BoxElementForm form = new BoxElementForm(m);
+            BoxElementForm form = new BoxElementForm(BoxElementType.Method);
 
             if (form.ShowDialog() == DialogResult.OK)
-                this.listBox_methods.Items.Add(m);
+                this.listBox_methods.Items.Add(form.Element);
         }
     }
 }

@@ -14,23 +14,43 @@ namespace UMLProject
 {
     public partial class BoxElementForm : Form
     {
-        BoxElement element;
-        public BoxElementForm(BoxElement element)
+        public BoxElement Element { get; private set; }
+
+        private BoxElementType type;
+
+        public BoxElementForm(BoxElementType type)
         {
             InitializeComponent();
-
-            this.element = element;
 
             this.comboBox_modifier.Items.Add(AccessModifier.Public);
             this.comboBox_modifier.Items.Add(AccessModifier.Private);
             this.comboBox_modifier.Items.Add(AccessModifier.Protected);
+
+            if(type == BoxElementType.Method)
+            {
+                this.label_parameters.Visible = true;
+                this.textBox_parameters.Visible = true;
+                this.Element = new Method();
+            }
+            else
+            {
+                this.Element = new Property();
+            }
+
+            this.type = type;
         }
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
-            this.element.ReturnType = this.textBox_return_type.Text;
-            this.element.Name = this.textBox_name.Text;
-            this.element.Modifier = (AccessModifier)this.comboBox_modifier.SelectedItem;            
+            if (this.type == BoxElementType.Method)
+            {
+                ((Method)this.Element).Parameters = this.textBox_parameters.Text;
+            }
+
+            this.Element.ReturnType = this.textBox_return_type.Text;
+            this.Element.Name = this.textBox_name.Text;
+            this.Element.Modifier = (AccessModifier)this.comboBox_modifier.SelectedItem;            
+
             this.DialogResult = DialogResult.OK;
         }
 

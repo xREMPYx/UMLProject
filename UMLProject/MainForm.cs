@@ -39,33 +39,36 @@ namespace UMLProject
             area.Draw(e.Graphics);
         }
 
-        private void timer_refresh_Tick(object sender, EventArgs e)
-        {
-            this.pictureBox_drawing_area.Refresh();
-        }
-
         private void pictureBox_drawing_area_MouseDown(object sender, MouseEventArgs e)
-        {
+        {            
             this.panel2.Size = this.panel2.MinimumSize;
 
             MakeButtonSelected();
             this.area.MouseDown(e.X, e.Y);
+
+            this.pictureBox_drawing_area.Refresh();
         }
 
         private void pictureBox_drawing_area_MouseUp(object sender, MouseEventArgs e)
         {
             this.area.MouseUp(e.X, e.Y);
+
+            this.pictureBox_drawing_area.Refresh();
         }
 
         private void pictureBox_drawing_area_MouseMove(object sender, MouseEventArgs e)
         {
             this.area.MouseMove(e.X, e.Y);
+            
+            this.pictureBox_drawing_area.Refresh();
         }
 
         private void pictureBox_drawing_area_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             MakeButtonSelected();
             this.area.MouseDoubleClick(e.X, e.Y);
+
+            this.pictureBox_drawing_area.Refresh();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -74,6 +77,8 @@ namespace UMLProject
             {
                 this.area.Delete();
             }
+
+            this.pictureBox_drawing_area.Refresh();
         }
 
         private void MakeButtonSelected(Button? b = null)

@@ -49,9 +49,7 @@ namespace UMLProject
 
             return sb.ToString();
         }
-
-        
-
+       
         public string GetMethods()
         {
             StringBuilder sb = new StringBuilder();

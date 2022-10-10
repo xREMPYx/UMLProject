@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel_top = new System.Windows.Forms.Panel();
             this.button_dependency = new System.Windows.Forms.Button();
             this.button_aggregation = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@
             this.button_generate_code = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             this.panel_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).BeginInit();
             this.panel2.SuspendLayout();
@@ -257,6 +255,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel2.Controls.Add(this.button_export);
             this.panel2.Controls.Add(this.button_import);
             this.panel2.Controls.Add(this.button_generate_code);
@@ -266,7 +265,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 0);
             this.panel2.TabIndex = 2;
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(0,0,0,0);
             // 
             // button_export
             // 
@@ -295,7 +293,7 @@
             this.button_generate_code.Size = new System.Drawing.Size(117, 23);
             this.button_generate_code.TabIndex = 1;
             this.button_generate_code.Text = "Generate Code";
-            this.button_generate_code.UseVisualStyleBackColor = true;            
+            this.button_generate_code.UseVisualStyleBackColor = true;
             this.button_generate_code.Click += new System.EventHandler(this.button_export_code_Click);
             // 
             // button_save
@@ -318,12 +316,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(684, 373);
             this.panel1.TabIndex = 3;
-            // 
-            // timer_refresh
-            // 
-            this.timer_refresh.Enabled = true;
-            this.timer_refresh.Interval = 1;
-            this.timer_refresh.Tick += new System.EventHandler(this.timer_refresh_Tick);
             // 
             // MainForm
             // 
@@ -368,6 +360,5 @@
         private Button button_generate_code;
         private Button button_save;
         private Panel panel1;
-        private System.Windows.Forms.Timer timer_refresh;
     }
 }

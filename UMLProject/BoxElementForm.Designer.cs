@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
             this.button_confirm = new System.Windows.Forms.Button();
+            this.textBox_parameters = new System.Windows.Forms.TextBox();
+            this.label_parameters = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +92,7 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(131, 111);
+            this.button_cancel.Location = new System.Drawing.Point(131, 145);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(84, 26);
             this.button_cancel.TabIndex = 13;
@@ -100,7 +102,7 @@
             // 
             // button_confirm
             // 
-            this.button_confirm.Location = new System.Drawing.Point(15, 111);
+            this.button_confirm.Location = new System.Drawing.Point(15, 145);
             this.button_confirm.Name = "button_confirm";
             this.button_confirm.Size = new System.Drawing.Size(84, 26);
             this.button_confirm.TabIndex = 14;
@@ -108,11 +110,31 @@
             this.button_confirm.UseVisualStyleBackColor = true;
             this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
             // 
+            // textBox_parameters
+            // 
+            this.textBox_parameters.Location = new System.Drawing.Point(94, 99);
+            this.textBox_parameters.Name = "textBox_parameters";
+            this.textBox_parameters.Size = new System.Drawing.Size(121, 23);
+            this.textBox_parameters.TabIndex = 18;
+            this.textBox_parameters.Visible = false;
+            // 
+            // label_parameters
+            // 
+            this.label_parameters.AutoSize = true;
+            this.label_parameters.Location = new System.Drawing.Point(15, 102);
+            this.label_parameters.Name = "label_parameters";
+            this.label_parameters.Size = new System.Drawing.Size(69, 15);
+            this.label_parameters.TabIndex = 17;
+            this.label_parameters.Text = "Parameters:";
+            this.label_parameters.Visible = false;
+            // 
             // BoxElementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 149);
+            this.ClientSize = new System.Drawing.Size(231, 183);
+            this.Controls.Add(this.textBox_parameters);
+            this.Controls.Add(this.label_parameters);
             this.Controls.Add(this.button_confirm);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.textBox_return_type);
@@ -138,5 +160,7 @@
         private Label label2;
         private Button button_cancel;
         private Button button_confirm;
+        private TextBox textBox_parameters;
+        private Label label_parameters;
     }
 }
