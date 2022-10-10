@@ -15,8 +15,8 @@ namespace UMLProject.Components
 
         public ResizableButton(int x, int y, Action<int, int> func)
         {
-            this.Width = 18;
-            this.Height = 18;
+            this.Width = 10;
+            this.Height = 10;
 
             this.func = func;
 

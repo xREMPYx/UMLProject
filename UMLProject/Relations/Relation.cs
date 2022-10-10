@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UMLProject.Components;
 using UMLProject.Enums;
 
 namespace UMLProject.Relations
@@ -14,16 +15,21 @@ namespace UMLProject.Relations
         public int StartY { get; set; }
         public int EndX { get; set; }
         public int EndY { get; set; }
+        public Box From { get; set; }
+        public Box To { get; set; }
         public static Pen GetPen() => new Pen(Brushes.Black, 2);
 
         public abstract void Draw(Graphics g);
         
-        public Relation(int sX, int sY)
-        {            
-            this.StartX = sX;
-            this.StartY = sY;
-            this.EndX = sX;
-            this.EndY = sY;
+        public Relation(Box from)
+        {
+            this.From = from;
+        }
+
+        public void InitLocation(int x, int y)
+        {
+            this.StartX = x;
+            this.StartY = y;
         }
 
         public void UpdateLocation(int x, int y)

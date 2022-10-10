@@ -169,6 +169,7 @@ namespace UMLProject
         private void button_composition_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Composition);
         }
 
         private void button_aggregation_Click(object sender, EventArgs e)
@@ -194,6 +195,7 @@ namespace UMLProject
         private void button_association_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Association);
         }
     }
 }

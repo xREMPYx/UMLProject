@@ -17,7 +17,8 @@ namespace UMLProject.Components
         //
 
         private Box? selected { get; set; } = null;
-        private Relation? relation { get; set; } = null;        
+        private RelationType? relationType { get; set; } = null;
+        private Relation? relation { get; set; } = null;
         public List<Box> Boxes { get; private set; } = new List<Box>();     
 
         public PaintingArea()
@@ -49,32 +50,27 @@ namespace UMLProject.Components
         Box? active;
         public override void MouseDown(int x, int y)
         {
-            this.active = this.Boxes.Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
-                                .LastOrDefault();
+            this.active = GetBoxInArea(x, y);
 
-            this.Boxes.Where(b => !b.IsInArea(x, y))
-                    .ToList()
-                    .ForEach(b => b.SetUnSelected());
+            UnselectRelevantBoxes(x, y);
 
-            if (this.active != null)
+            if (this.active != null && this.relation == null)
             {
                 this.active.MouseDown(x, y);
             }
-
-            if (this.selected != null)
+            else if (this.active != null && this.relation != null)
             {
-                BoxForm form = new BoxForm(x, y);
+                //should add line
+                RelationType type = (RelationType)this.relationType;
 
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    Location max = form.Box.GetMaxLocation();
+                
 
-                    form.Box.X = form.Box.X > max.X ? max.X : form.Box.X;
-                    form.Box.Y = form.Box.Y > max.Y ? max.Y : form.Box.Y;
-
-                    this.Boxes.Add(form.Box);
-                    this.selected = null;
-                }
+                this.active.From.Add(RelationGetter.GetRelation(type, active));
+                
+            }
+            else if (this.selected != null)
+            {
+                CreateNewBox(x, y);
             }
 
             base.MouseDown(x, y);
@@ -84,10 +80,12 @@ namespace UMLProject.Components
 
         public override void MouseMove(int x, int y)
         {
-            this.Boxes.ForEach(b => b.IsInArea(x, y));
+            MarkHoveredArea(x, y);
 
             if (this.active != null)
+            {
                 this.active.MouseMove(x, y);
+            }                
 
             SetMinimalSize();
 
@@ -96,23 +94,11 @@ namespace UMLProject.Components
 
         public void MouseDoubleClick(int x, int y)
         {
-            this.active = this.Boxes.Where(b => b.IsInArea(x, y))
-                .LastOrDefault();
+            this.active = GetBoxInArea(x, y);
 
             if(this.active != null)
             {
-                BoxForm form = new BoxForm(this.active);
-
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    this.active.Name = form.Box.Name;
-                    this.active.Modifier = form.Box.Modifier;
-                    this.active.Type = form.Box.Type;
-                    this.active.Properties = form.Box.Properties;
-                    this.active.Methods = form.Box.Methods;
-                    this.active.Width = form.Box.Width;
-                    this.active.Height = form.Box.Height;
-                }
+                UpdateBox();
 
                 this.active.UpdateResizeArrows();
             }
@@ -125,8 +111,59 @@ namespace UMLProject.Components
             base.MouseUp(x, y);
         }
 
-        //Sets minimal size of painting area accroding to box locations and sizes
+        //Returns box in area
+        private Box? GetBoxInArea(int x, int y)
+        {
+            return this.Boxes.Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
+                                .LastOrDefault();
+        }
 
+        //Marks current area
+        private void MarkHoveredArea(int x, int y) => this.Boxes.ForEach(b => b.IsInArea(x, y));
+
+        //Unselect relevant boxes
+        private void UnselectRelevantBoxes(int x, int y)
+        {
+            this.Boxes.Where(b => !b.IsInArea(x, y))
+                    .ToList()
+                    .ForEach(b => b.SetUnSelected());
+        }
+
+        //Updates box
+        private void UpdateBox()
+        {
+            BoxForm form = new BoxForm(this.active);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.active.Name = form.Box.Name;
+                this.active.Modifier = form.Box.Modifier;
+                this.active.Type = form.Box.Type;
+                this.active.Properties = form.Box.Properties;
+                this.active.Methods = form.Box.Methods;
+                this.active.Width = form.Box.Width;
+                this.active.Height = form.Box.Height;
+            }
+        }
+
+        //Creates new box
+        private void CreateNewBox(int x, int y)
+        {
+            BoxForm form = new BoxForm(x, y);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Location max = form.Box.GetMaxLocation();
+
+                form.Box.X = form.Box.X > max.X ? max.X : form.Box.X;
+                form.Box.Y = form.Box.Y > max.Y ? max.Y : form.Box.Y;
+
+                this.Boxes.Add(form.Box);
+                this.selected = null;
+            }
+        }
+
+        //Sets minimal size of painting area accroding to box locations and sizes
         private void SetMinimalSize()
         {
             SizeF min = SizeF.Empty;
@@ -156,6 +193,6 @@ namespace UMLProject.Components
 
         public void SelectNewBox(Box box) => this.selected = box;
 
-        public void SelectNewRelation(Relation relation) => this.relation = relation;
+        public void SelectNewRelation(RelationType relation) => this.relationType = relation;
     }
 }
