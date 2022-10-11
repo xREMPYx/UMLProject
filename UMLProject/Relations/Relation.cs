@@ -18,7 +18,7 @@ namespace UMLProject.Relations
         public int EndY { get; set; }
         public Box From { get; set; }
         public Box To { get; set; }
-        public static Pen GetPen() => new Pen(Brushes.Black, 2);
+        protected Pen Pen = new Pen(Brushes.Black, 2);
 
         public abstract void Draw(Graphics g);
         
@@ -29,26 +29,34 @@ namespace UMLProject.Relations
 
         public void UpdateStartLocation(int x, int y)
         {
-            this.StartX = x;
-            this.StartY = y;
+            if (StartX != x)
+                this.StartX = x;
+            if (StartY != y)
+                this.StartY = y;
         }
         
         public void UpdateStartLocation(Location location)
         {
-            this.StartX = location.X;
-            this.StartY = location.Y;
+            if (StartX != location.X)
+                this.StartX = location.X;
+            if (StartY != location.Y)
+                this.StartY = location.Y;
         }
 
         public void UpdateEndLocation(int x, int y)
         {
-            this.EndX = x;
-            this.EndY = y;
+            if (EndX != x)
+                this.EndX = x;
+            if (EndY != y)
+                this.EndY = y;
         }
         
         public void UpdateEndLocation(Location location)
         {
-            this.EndX = location.X;
-            this.EndY = location.Y;
+            if(EndX != location.X)
+                this.EndX = location.X;
+            if(EndY != location.Y)
+                this.EndY = location.Y;
         }
 
         public void UpdateLocationAccordingly()
@@ -68,11 +76,51 @@ namespace UMLProject.Relations
                 UpdateEndLocation(GetLeftLocation(To));
             }
 
-            //if (this.From.Y > this.To.Y)
-            //{
-            //    UpdateStartLocation(GetLeftLocation(From));
-            //    UpdateEndLocation(GetRightLocation(To));
-            //}
+            if (this.From.Y + this.From.Height < this.To.Y)
+            {
+                UpdateStartLocation(GetBottomLocation(From));
+
+                if(this.To.X < this.From.X + this.From.Width / 2)
+                    UpdateEndLocation(GetTopLocation(To));
+            }
+
+            if (this.To.Y + this.To.Height < this.From.Y)
+            {
+                UpdateEndLocation(GetBottomLocation(To));
+
+                if (this.From.X < this.To.X + this.To.Width / 2)
+                    UpdateStartLocation(GetTopLocation(From));
+            }
+        }
+
+        public bool IsInArea(int x, int y)
+        {
+            Pen.Color = Color.Black;
+            
+            int sX = StartX > EndX ? EndX : StartX;
+            int cX = StartX > EndX ? StartX - EndX : EndX - StartX;
+
+            int sY = StartY > EndY ? EndY : StartY;
+            int cY = StartY > EndY ? StartY - EndY : EndY - StartY;
+
+            bool isInrange = Enumerable.Range(sX, cX).Contains(x)
+                          && Enumerable.Range(sY, cY).Contains(y);
+
+            if (!isInrange)
+                return false;
+
+            int c = EndY * StartX - EndX * StartY;
+
+            int lineEquation = (-EndY * x) + (EndX * y) + c;
+
+            bool isOnLine = lineEquation == 0;            
+
+            if (!isOnLine)
+                return false;
+
+            Pen.Color = Color.Blue;
+
+            return true;
         }
 
         private Location GetTopLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width / 2, b.Y));

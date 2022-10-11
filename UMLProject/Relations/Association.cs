@@ -27,14 +27,12 @@ namespace UMLProject.Relations
                 capPath.AddLine(-5, 0, 0, 5);
                 capPath.AddLine(0, 5, 5, 0);
 
-                Pen p = Relation.GetPen();
+                Pen p = Pen;
 
                 p.CustomEndCap = new CustomLineCap(null, capPath);
 
                 g.DrawLine(p, StartX, StartY, EndX, EndY);
             };
-
-            //g.DrawLine(Relation.GetPen(), StartX, StartY, EndX, EndY);
         }
     }
 }
