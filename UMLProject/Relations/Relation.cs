@@ -107,13 +107,16 @@ namespace UMLProject.Relations
                           && Enumerable.Range(sY, cY).Contains(y);
 
             if (!isInrange)
-                return false;
+                return false;            
 
-            int c = EndY * StartX - EndX * StartY;
+            int vX = EndX - StartX;
+            int vY = EndY - StartY;
 
-            int lineEquation = (-EndY * x) + (EndX * y) + c;
+            int c = vY * StartX - vX * StartY;
 
-            bool isOnLine = lineEquation == 0;            
+            int lineEquation = (-vY * x) + (vX * y) + c;
+            
+            bool isOnLine = lineEquation > -450 && lineEquation < 450;            
 
             if (!isOnLine)
                 return false;
