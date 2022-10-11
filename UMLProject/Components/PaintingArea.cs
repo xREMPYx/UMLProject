@@ -16,10 +16,11 @@ namespace UMLProject.Components
 
         //
 
-        private Box? selected { get; set; } = null;
+        private Box? NewBox { get; set; } = null;
         private RelationType? relationType { get; set; } = null;
-        private Relation? relation { get; set; } = null;
-        public List<Box> Boxes { get; private set; } = new List<Box>();     
+        private Relation? Relation { get; set; } = null;
+        public List<Box> Boxes { get; private set; } = new List<Box>();
+        public List<Relation> Relations { get; private set; } = new List<Relation>();
 
         public PaintingArea()
         {
@@ -44,48 +45,51 @@ namespace UMLProject.Components
                 b.Draw(g);
             }
 
+            foreach (Relation r in Relations)
+            {
+                r.Draw(g);
+            }
+
             base.Draw(g);
         }
 
-        Box? active;
+        Box? ActiveBox;
         public override void MouseDown(int x, int y)
         {
-            this.active = GetBoxInArea(x, y);
+            this.ActiveBox = GetBoxInArea(x, y);
 
             UnselectRelevantBoxes(x, y);
 
-            if (this.active != null && this.relation == null)
+            if (this.ActiveBox != null && this.relationType == null)
             {
-                this.active.MouseDown(x, y);
+                this.ActiveBox.MouseDown(x, y);
             }
-            else if (this.active != null && this.relation != null)
+            else if (this.ActiveBox != null && this.relationType != null)
             {
-                //should add line
-                RelationType type = (RelationType)this.relationType;
-
-                
-
-                this.active.From.Add(RelationGetter.GetRelation(type, active));
-                
+                CreateRelation(x, y);
             }
-            else if (this.selected != null)
+            else if (this.NewBox != null)
             {
                 CreateNewBox(x, y);
             }
 
             base.MouseDown(x, y);
 
-            PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
+            UpdateSizeOfPaintingArea();            
         }
 
         public override void MouseMove(int x, int y)
         {
             MarkHoveredArea(x, y);
 
-            if (this.active != null)
+            if (this.ActiveBox != null && this.Relation == null)
             {
-                this.active.MouseMove(x, y);
-            }                
+                this.ActiveBox.MouseMove(x, y);
+            }
+            else if (this.ActiveBox != null && this.Relation != null)
+            {
+                this.Relation.UpdateEndLocation(x, y);
+            }
 
             SetMinimalSize();
 
@@ -94,21 +98,54 @@ namespace UMLProject.Components
 
         public void MouseDoubleClick(int x, int y)
         {
-            this.active = GetBoxInArea(x, y);
+            this.ActiveBox = GetBoxInArea(x, y);
 
-            if(this.active != null)
+            if(this.ActiveBox != null)
             {
                 UpdateBox();
 
-                this.active.UpdateResizeArrows();
+                this.ActiveBox.UpdateResizeArrows();
             }
         }
 
         public override void MouseUp(int x, int y)
         {
+            if (this.Relation != null)
+            {
+                AssignRelationArrow(x, y);
+            }
+
             this.Boxes.ForEach(b => b.ClearMouseState());
 
             base.MouseUp(x, y);
+        }
+
+        //Creates relation
+        private void CreateRelation(int x, int y)
+        {
+            this.Relation = new Association(this.ActiveBox);
+            this.Relations.Add(Relation);
+            this.Relation.UpdateStartLocation(x, y);
+            this.Relation.UpdateEndLocation(x, y);
+        }
+
+        //Assigns relation
+        private void AssignRelationArrow(int x, int y)
+        {
+            Box? selected = GetBoxInArea(x, y);
+
+            if (selected != null)
+            {
+                this.Relation.To = selected;
+                this.Relation = null;
+                this.relationType = null;
+            }
+            else
+            {
+                this.Relations.Remove(this.Relation);
+                this.relationType = null;
+                this.Relation = null;
+            }
         }
 
         //Returns box in area
@@ -132,17 +169,17 @@ namespace UMLProject.Components
         //Updates box
         private void UpdateBox()
         {
-            BoxForm form = new BoxForm(this.active);
+            BoxForm form = new BoxForm(this.ActiveBox);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                this.active.Name = form.Box.Name;
-                this.active.Modifier = form.Box.Modifier;
-                this.active.Type = form.Box.Type;
-                this.active.Properties = form.Box.Properties;
-                this.active.Methods = form.Box.Methods;
-                this.active.Width = form.Box.Width;
-                this.active.Height = form.Box.Height;
+                this.ActiveBox.Name = form.Box.Name;
+                this.ActiveBox.Modifier = form.Box.Modifier;
+                this.ActiveBox.Type = form.Box.Type;
+                this.ActiveBox.Properties = form.Box.Properties;
+                this.ActiveBox.Methods = form.Box.Methods;
+                this.ActiveBox.Width = form.Box.Width;
+                this.ActiveBox.Height = form.Box.Height;
             }
         }
 
@@ -159,7 +196,7 @@ namespace UMLProject.Components
                 form.Box.Y = form.Box.Y > max.Y ? max.Y : form.Box.Y;
 
                 this.Boxes.Add(form.Box);
-                this.selected = null;
+                this.NewBox = null;
             }
         }
 
@@ -183,15 +220,16 @@ namespace UMLProject.Components
 
             this.MinWidth = (int)min.Width;
             this.MinHeight = (int)min.Height;
-        }
+        }        
 
         //Deletes selected box
         public void Delete()
         {
             this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();
         }
+        private void UpdateSizeOfPaintingArea() => PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
 
-        public void SelectNewBox(Box box) => this.selected = box;
+        public void SelectNewBox(Box box) => this.NewBox = box;
 
         public void SelectNewRelation(RelationType relation) => this.relationType = relation;
     }

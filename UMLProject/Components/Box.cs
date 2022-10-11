@@ -166,8 +166,6 @@ namespace UMLProject.Components
         //Updated func for resize
         private void Resize(int x, int y)
         {
-            Location max = GetMaxLocation();
-
             int tmpW = this.Width;
             int tmpH = this.Height;
 

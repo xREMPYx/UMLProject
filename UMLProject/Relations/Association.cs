@@ -18,12 +18,14 @@ namespace UMLProject.Relations
 
         public override void Draw(Graphics g)
         {
+            this.UpdateLocationAccordingly();
+
             using (GraphicsPath capPath = new GraphicsPath())
             {
                 // A triangle
-                capPath.AddLine(-10, 0, 10, 0);
-                capPath.AddLine(-10, 0, 0, 10);
-                capPath.AddLine(0, 10, 10, 0);
+                capPath.AddLine(-5, 0, 5, 0);
+                capPath.AddLine(-5, 0, 0, 5);
+                capPath.AddLine(0, 5, 5, 0);
 
                 Pen p = Relation.GetPen();
 
