@@ -42,7 +42,7 @@ namespace UMLProject.Components
             this.MinWidth = (int)min.Width;
             this.MinHeight = (int)min.Height;
 
-            UpdateResizeArrows();
+            UpdateResizeButton();
             UpdateResizeFunc(Resize);
         }
 
@@ -94,7 +94,7 @@ namespace UMLProject.Components
         {
             UpdateMinSize();
 
-            UpdateResizeArrows();
+            UpdateResizeButton();
 
             base.MouseMove(x, y);
 
@@ -129,7 +129,7 @@ namespace UMLProject.Components
 
         public override void MouseUp(int x, int y)
         {
-            UpdateResizeArrows();
+            UpdateResizeButton();
 
             base.MouseUp(x, y);
 
@@ -150,8 +150,6 @@ namespace UMLProject.Components
         }
 
         public Location GetMinLocation() => new Location(5, 5);
-
-        public void SetUnSelected() => this.IsSelected = false;
 
         private void UpdateMinSize()
         {

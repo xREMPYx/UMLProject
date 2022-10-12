@@ -33,7 +33,7 @@ namespace UMLProject.Components
 
             PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
 
-            UpdateResizeArrows();
+            UpdateResizeButton();
         }
 
         public override void Draw(Graphics g)
@@ -54,22 +54,33 @@ namespace UMLProject.Components
         }
 
         Box? ActiveBox;
+        Relation? ActiveRelation;
         public override void MouseDown(int x, int y)
         {
             this.ActiveBox = GetBoxInArea(x, y);
+            this.ActiveRelation = GetRelationInArea(x, y);
 
             UnselectRelevantBoxes(x, y);
+            UnselectRelevantRelations(x, y);
 
             PushBoxToFront();
 
-            if (this.ActiveBox != null && this.RelationType == null)
+            if(ActiveBox != null)
             {
-                this.ActiveBox.MouseDown(x, y);
+                if (this.ActiveBox != null && this.RelationType == null)
+                {
+                    this.ActiveBox.MouseDown(x, y);
+                }
+                else if (this.ActiveBox != null && this.RelationType != null)
+                {
+                    CreateRelation(x, y);
+                }
             }
-            else if (this.ActiveBox != null && this.RelationType != null)
+            else if(ActiveRelation != null)
             {
-                CreateRelation(x, y);
+                ActiveRelation.MouseDown(x, y);
             }
+            
             else if (this.NewBox != null)
             {
                 CreateNewBox(x, y);
@@ -84,13 +95,20 @@ namespace UMLProject.Components
         {
             MarkHoveredArea(x, y);
 
-            if (this.ActiveBox != null && this.Relation == null)
+            if (ActiveBox != null)
             {
-                this.ActiveBox.MouseMove(x, y);
+                if (this.ActiveBox != null && this.Relation == null)
+                {
+                    this.ActiveBox.MouseMove(x, y);
+                }
+                else if (this.ActiveBox != null && this.Relation != null)
+                {                    
+                    this.Relation.UpdateEndLocation(x, y);
+                }
             }
-            else if (this.ActiveBox != null && this.Relation != null)
+            else if (ActiveRelation != null)
             {
-                this.Relation.UpdateEndLocation(x, y);
+                ActiveRelation.MouseMove(x, y);
             }
 
             SetMinimalSize();
@@ -106,7 +124,7 @@ namespace UMLProject.Components
             {
                 UpdateBox();
 
-                this.ActiveBox.UpdateResizeArrows();
+                this.ActiveBox.UpdateResizeButton();
             }
         }
 
@@ -118,6 +136,7 @@ namespace UMLProject.Components
             }
 
             this.Boxes.ForEach(b => b.ClearMouseState());
+            this.Relations.ForEach(r => r.ClearMouseState());
 
             base.MouseUp(x, y);
         }
@@ -138,9 +157,10 @@ namespace UMLProject.Components
 
             if (selected != null && selected != this.ActiveBox)
             {
+                this.Relation.SetResizeButtonVisible();
                 this.Relation.To = selected;
                 this.Relation = null;
-                this.RelationType = null;
+                this.RelationType = null;                
             }
             else
             {
@@ -154,6 +174,12 @@ namespace UMLProject.Components
         private Box? GetBoxInArea(int x, int y)
         {
             return this.Boxes.Where(b => b.IsInArea(x, y) || (b.IsResizeArrowInArea(x, y) && b.IsSelected))
+                                .LastOrDefault();
+        }
+
+        private Relation? GetRelationInArea(int x, int y)
+        {
+            return this.Relations.Where(r => r.IsInArea(x, y) || (r.IsResizeArrowInArea(x, y) && r.IsSelected))
                                 .LastOrDefault();
         }
 
@@ -171,6 +197,14 @@ namespace UMLProject.Components
             this.Boxes.Where(b => !b.IsInArea(x, y))
                     .ToList()
                     .ForEach(b => b.SetUnSelected());
+        }
+        
+        //Unselect relevant boxes
+        private void UnselectRelevantRelations(int x, int y)
+        {
+            this.Relations.Where(r => !r.IsInArea(x, y))
+                    .ToList()
+                    .ForEach(r => r.SetUnSelected());
         }
 
         //Updates box
@@ -234,7 +268,9 @@ namespace UMLProject.Components
         {
             this.Relations = this.Relations.Where(r => !(r.From == ActiveBox || r.To == ActiveBox)).ToList();
 
-            this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();            
+            this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();    
+            
+            this.Relations = this.Relations.Where(r => !r.IsSelected).ToList();            
         }
 
         private void PushBoxToFront()

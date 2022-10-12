@@ -47,5 +47,8 @@ namespace UMLProject.Components
 
             return result;
         }
+
+        public void SetUnSelected() => IsSelected = false;
+        public void SetSelected() => IsSelected = true;
     }
 }

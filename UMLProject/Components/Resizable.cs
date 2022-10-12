@@ -9,14 +9,14 @@ namespace UMLProject.Components
 {
     public abstract class Resizable : Component
     {
-        private ResizableButton combined { get; set; }
+        public ResizeButton resizeButton { get; private set; }
 
         public Resizable()
         {
             int w = this.Width;
             int h = this.Height;
 
-            combined = new ResizableButton(w + X, h + Y, Resize);
+            resizeButton = new ResizeButton(w + X, h + Y, Resize);
 
             void Resize(int x, int y)
             {
@@ -28,24 +28,24 @@ namespace UMLProject.Components
         public override void Draw(Graphics g)
         {            
             if(IsSelected)
-                combined.Draw(g);
+                resizeButton.Draw(g);
         }
 
-        public void UpdateResizeArrows()
+        public virtual void UpdateResizeButton()
         {
             int w = this.Width;
             int h = this.Height;
 
-            combined.UpdateLocation(w + X, h + Y);
+            resizeButton.UpdateLocation(w + X, h + Y);
         }
 
-        ResizableButton active;
+        ResizeButton? active;
 
         public virtual void MouseDown(int x, int y)
         {
-            UpdateResizeArrows();
+            UpdateResizeButton();
 
-            active = combined.IsInArea(x, y) ? combined : null;
+            active = resizeButton.IsInArea(x, y) ? resizeButton : null;
 
             if (active != null)
             {
@@ -55,9 +55,9 @@ namespace UMLProject.Components
 
         public virtual void MouseMove(int x, int y)
         {
-            UpdateResizeArrows();
+            UpdateResizeButton();
 
-            combined.IsInArea(x, y);
+            resizeButton.IsInArea(x, y);
 
             if (active != null)
             {
@@ -67,7 +67,7 @@ namespace UMLProject.Components
 
         public virtual void MouseUp(int x, int y)
         {
-            UpdateResizeArrows();
+            UpdateResizeButton();
 
             if (active != null)
             {
@@ -75,12 +75,21 @@ namespace UMLProject.Components
             }           
         }
 
-        protected void UpdateResizeFunc(Action<int, int> func) => this.combined.UpdateFunc(func);
+        protected void UpdateResizeFunc(Action<int, int> func) => this.resizeButton.UpdateFunc(func);
 
-        public bool IsResizeActive() => combined.mouseState == MouseState.Down;
+        public bool IsResizeActive() => resizeButton.mouseState == MouseState.Down;
 
-        public bool IsResizeArrowInArea(int x, int y) => combined.IsInArea(x, y);
+        public bool IsResizeArrowInArea(int x, int y) => resizeButton.IsInArea(x, y);
 
-        public virtual void ClearMouseState() => combined.ClearMouseState();
+        public virtual void ClearMouseState() => resizeButton.ClearMouseState();
+
+        public void SetResizeButtonUnVisible() => resizeButton.IsSelected = false;
+        public void SetResizeButtonVisible() => resizeButton.IsSelected = true;
+
+        protected void SetResizeButtonSize(int s)
+        {
+            resizeButton.Width = s;
+            resizeButton.Height = s;
+        }
     }
 }

@@ -8,12 +8,12 @@ using UMLProject.Models;
 
 namespace UMLProject.Components
 {
-    public class ResizableButton : Component
+    public class ResizeButton : Component
     {
         private Action<int, int> func;
         public MouseState mouseState { get; private set; }
 
-        public ResizableButton(int x, int y, Action<int, int> func)
+        public ResizeButton(int x, int y, Action<int, int> func)
         {
             this.Width = 10;
             this.Height = 10;
