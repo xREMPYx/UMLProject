@@ -19,22 +19,23 @@ namespace UMLProject.Relations
         public override void Draw(Graphics g)
         {
             this.UpdateLocationAccordingly();
-            
-            using (GraphicsPath capPath = new GraphicsPath())
-            {
-                // A triangle
-                capPath.AddLine(-5, 0, 5, 0);
-                capPath.AddLine(-5, 0, 0, 5);
-                capPath.AddLine(0, 5, 5, 0);
 
-                Pen p = new Pen(Pen.Brush);
-                Pen p1 = new Pen(Pen.Brush);
+            Pen pen = new Pen(Pen.Brush, Pen.Width);
+            Pen pen1 = new Pen(Pen.Brush, Pen.Width);
 
-                p1.CustomEndCap = new CustomLineCap(null, capPath);
+            Pen penA = new Pen(PaintingArea.BackColorBrush, pen.Width);
 
-                g.DrawLine(p, StartX, StartY, MidX, MidY);
-                g.DrawLine(p1, MidX, MidY, EndX, EndY);
-            };
+            GraphicsPath capPath = new GraphicsPath();
+            capPath.AddLine(-5, -5, 5, -5);
+            capPath.AddLine(-5, -5, 0, 0);
+            capPath.AddLine(0, 0, 5, -5);
+
+            pen.CustomEndCap = new CustomLineCap(null, capPath);
+
+            g.DrawLine(pen1, StartX, StartY, MidX, MidY);
+            g.DrawLine(pen, MidX, MidY, EndX, EndY);
+
+            g.DrawLine(penA, EndX - 4, EndY - 4, EndX - 1, EndY - 1);
 
             base.Draw(g);
         }

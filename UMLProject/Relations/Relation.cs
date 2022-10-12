@@ -116,38 +116,10 @@ namespace UMLProject.Relations
 
         public void UpdateLocationAccordingly()
         {
-            if (To == null)
-                return;
-
-            if(this.From.X > this.To.X)
-            {
-                UpdateStartLocation(GetLeftLocation(From));
-                UpdateEndLocation(GetRightLocation(To));
-            }
-
-            if (this.From.X < this.To.X)
-            {
-                UpdateStartLocation(GetRightLocation(From));
-                UpdateEndLocation(GetLeftLocation(To));
-            }
-
-            if (this.From.Y + this.From.Height < this.To.Y)
-            {
-                UpdateStartLocation(GetBottomLocation(From));
-
-                if(this.To.X < this.From.X + this.From.Width / 2)
-                    UpdateEndLocation(GetTopLocation(To));
-            }
-
-            if (this.To.Y + this.To.Height < this.From.Y)
-            {
-                UpdateEndLocation(GetBottomLocation(To));
-
-                if (this.From.X < this.To.X + this.To.Width / 2)
-                    UpdateStartLocation(GetTopLocation(From));
-            }
-
-            UpdateResizeButton();
+            if (IsModified)
+                UpdateLocationOfModified();
+            else
+                UpdateLocationOfUnmodified();
         }
 
         public override bool IsInArea(int x, int y)
@@ -210,5 +182,70 @@ namespace UMLProject.Relations
         private Location GetRightLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width, b.Y + b.Height / 2));
 
         private Location GetCustomBox(Box box, Func<Box, Location> func) => func(box);
+
+
+        //Functions for location updates
+        private void UpdateLocationOfUnmodified()
+        {
+            if (To == null)
+                return;
+
+            if (this.From.X > this.To.X)
+            {
+                UpdateStartLocation(GetLeftLocation(From));
+                UpdateEndLocation(GetRightLocation(To));
+            }
+
+            if (this.From.X < this.To.X)
+            {
+                UpdateStartLocation(GetRightLocation(From));
+                UpdateEndLocation(GetLeftLocation(To));
+            }
+
+            if (this.From.Y + this.From.Height < this.To.Y)
+            {
+                UpdateStartLocation(GetBottomLocation(From));
+
+                if (this.To.X < this.From.X + this.From.Width / 2)
+                    UpdateEndLocation(GetTopLocation(To));
+            }
+
+            if (this.To.Y + this.To.Height < this.From.Y)
+            {
+                UpdateEndLocation(GetBottomLocation(To));
+
+                if (this.From.X < this.To.X + this.To.Width / 2)
+                    UpdateStartLocation(GetTopLocation(From));
+            }
+
+            UpdateResizeButton();
+        }
+
+        private void UpdateLocationOfModified()
+        {
+            if (this.From.X + this.From.Width >= this.MidX)
+                UpdateStartLocation(GetLeftLocation(From));
+
+            if (this.From.Y >= this.MidY)
+                UpdateStartLocation(GetTopLocation(From));
+
+            if (this.From.Y + this.From.Height <= MidY)
+                UpdateStartLocation(GetBottomLocation(From));
+
+            if (this.From.X + this.From.Width <= this.MidX)
+                UpdateStartLocation(GetRightLocation(From));
+
+            if (this.To.X + this.To.Width >= this.MidX)
+                UpdateEndLocation(GetLeftLocation(To));
+
+            if (this.To.Y >= this.MidY)
+                UpdateEndLocation(GetTopLocation(To));
+
+            if (this.To.Y + this.To.Height <= MidY)
+                UpdateEndLocation(GetBottomLocation(To));
+
+            if (this.To.X + this.To.Width <= this.MidX)
+                UpdateEndLocation(GetRightLocation(To));
+        }
     }
 }
