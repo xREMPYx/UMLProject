@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace UMLProject.Relations
         public bool IsModified { get; set; } = false;
         public Box From { get; set; }
         public Box To { get; set; }
+
+        protected GraphicsPath capPath = new GraphicsPath();
 
         protected Pen Pen = new Pen(Brushes.Black, 2);
         
@@ -45,6 +48,26 @@ namespace UMLProject.Relations
             this.From = from;
 
             SetResizeButtonUnVisible();
+        }
+
+        public override void Draw(Graphics g)
+        {
+            this.UpdateLocationAccordingly();
+
+            Pen fPen = new Pen(Pen.Brush, Pen.Width);
+            Pen sPen = new Pen(Pen.Brush, Pen.Width);
+
+            float[] dashValues = { 2, 2, 2 };
+
+            sPen.DashPattern = dashValues;
+            fPen.DashPattern = dashValues;
+
+            sPen.CustomEndCap = new CustomLineCap(null, capPath);
+
+            g.DrawLine(fPen, StartX, StartY, MidX, MidY);
+            g.DrawLine(sPen, MidX, MidY, EndX, EndY);
+
+            base.Draw(g);
         }
 
         public override void MouseDown(int x, int y)

@@ -20,8 +20,7 @@ namespace UMLProject.Components
         protected Pen IsActivePen { get; set; } = Pens.Black;
         public static Font Font { get; set; } = new Font("Arial", 9);
 
-        public virtual void Draw(Graphics g) { }
-        public virtual void Move() { }
+        public abstract void Draw(Graphics g);
 
         public void UpdateSize(int width, int height)
         {
