@@ -13,11 +13,10 @@ namespace UMLProject.Relations
     {
         public Association(Box from) : base(from)
         {
-            capPath.AddLine(-5, -5, 5, -5);
             capPath.AddLine(-5, -5, 0, 0);
             capPath.AddLine(0, 0, 5, -5);
 
-            this.Type = RelationType.Association;
+            this.Type = RelationType.Association;                        
         }
     }
 }

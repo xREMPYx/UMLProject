@@ -25,7 +25,8 @@ namespace UMLProject.Relations
 
         protected GraphicsPath capPath = new GraphicsPath();
 
-        protected Pen Pen = new Pen(Brushes.Black, 2);
+        protected Pen Pen = new Pen(Brushes.Black, 2) { DashPattern = new float[] { 1 }
+    };
         
         public Relation(Box from)
         {
@@ -41,29 +42,32 @@ namespace UMLProject.Relations
                 MidX = MidX < size.X ? size.X : MidX;
                 MidY = MidY < size.Y ? size.Y : MidY;
 
-                resizeButton.UpdateLocation(MidX, MidY);
+                this.resizeButton.X = MidX;
+                this.resizeButton.Y = MidY;
             });
 
             this.SetResizeButtonSize(6);
             this.From = from;
 
             SetResizeButtonUnVisible();
+
+            Pen.DashPattern = new float[] { 1 };
         }
 
         public override void Draw(Graphics g)
         {
             this.UpdateLocationAccordingly();
+            this.UpdateResizeButton();            
 
             Pen fPen = new Pen(Pen.Brush, Pen.Width);
             Pen sPen = new Pen(Pen.Brush, Pen.Width);
 
-            float[] dashValues = { 2, 2, 2 };
-
-            sPen.DashPattern = dashValues;
-            fPen.DashPattern = dashValues;
+            sPen.DashPattern = Pen.DashPattern;
+            fPen.DashPattern = Pen.DashPattern;
 
             sPen.CustomEndCap = new CustomLineCap(null, capPath);
 
+            g.DrawString("X", Component.Font, Brushes.Black, StartX, StartY);
             g.DrawLine(fPen, StartX, StartY, MidX, MidY);
             g.DrawLine(sPen, MidX, MidY, EndX, EndY);
 

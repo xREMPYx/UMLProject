@@ -175,27 +175,44 @@ namespace UMLProject
         private void button_aggregation_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Aggregation);
         }
 
         private void button_dependency_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Dependency);
         }
 
         private void button_implementation_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Implementation);
         }
 
         private void button_inheritance_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
+            this.area.SelectNewRelation(RelationType.Inheritance);
         }
 
         private void button_association_Click(object sender, EventArgs e)
         {
             MakeButtonSelected((Button)sender);
             this.area.SelectNewRelation(RelationType.Association);
+        }
+
+        private void relation_button_hover(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+
+            string label = b.Name.Split('_')[1];
+
+            string firstL = label[0].ToString().ToUpper().ToString();
+
+            string res = firstL + label.Substring(1, label.Length - 1);
+
+            this.toolTip1.Show(res, b);
         }
     }
 }

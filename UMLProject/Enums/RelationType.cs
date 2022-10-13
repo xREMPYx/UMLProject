@@ -22,10 +22,16 @@ namespace UMLProject.Enums
     {
         public static Relation GetRelation(RelationType relation, Box box)
         {
-            if (relation == RelationType.Association)
-                return new Association(box);
+            Dictionary<RelationType, Relation> relations = new Dictionary<RelationType, Relation>();
 
-            return new Association(box);
+            relations.Add(RelationType.Association, new Association(box));
+            relations.Add(RelationType.Inheritance, new Inheritance(box));
+            relations.Add(RelationType.Implementation, new Implementaion(box));
+            relations.Add(RelationType.Dependency, new Dependency(box));
+            relations.Add(RelationType.Aggregation, new Aggregation(box));
+            relations.Add(RelationType.Composition, new Composition(box));
+
+            return relations[relation];
         }
     }
 }

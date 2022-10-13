@@ -144,7 +144,7 @@ namespace UMLProject.Components
         //Creates relation
         private void CreateRelation(int x, int y)
         {
-            this.Relation = new Association(this.ActiveBox);
+            this.Relation = RelationGetter.GetRelation((RelationType)this.RelationType, this.ActiveBox);
             this.Relations.Add(Relation);
             this.Relation.UpdateStartLocation(x, y);
             this.Relation.UpdateEndLocation(x, y);
@@ -285,8 +285,17 @@ namespace UMLProject.Components
 
         private void UpdateSizeOfPaintingArea() => PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
 
-        public void SelectNewBox(Box box) => this.NewBox = box;
+        public void SelectNewBox(Box box)
+        {
+            this.RelationType = null;
+            this.NewBox = box;            
+        }
+        
 
-        public void SelectNewRelation(RelationType relation) => this.RelationType = relation;
+        public void SelectNewRelation(RelationType relation)
+        {
+            this.ActiveBox = null;
+            this.RelationType = relation;
+        }
     }
 }

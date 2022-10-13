@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel_top = new System.Windows.Forms.Panel();
             this.button_dependency = new System.Windows.Forms.Button();
             this.button_aggregation = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.button_generate_code = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_drawing_area)).BeginInit();
             this.panel2.SuspendLayout();
@@ -88,6 +90,7 @@
             this.button_dependency.TabIndex = 16;
             this.button_dependency.UseVisualStyleBackColor = false;
             this.button_dependency.Click += new System.EventHandler(this.button_dependency_Click);
+            this.button_dependency.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button_aggregation
             // 
@@ -104,6 +107,7 @@
             this.button_aggregation.TabIndex = 15;
             this.button_aggregation.UseVisualStyleBackColor = false;
             this.button_aggregation.Click += new System.EventHandler(this.button_aggregation_Click);
+            this.button_aggregation.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button_box
             // 
@@ -135,6 +139,7 @@
             this.button_composition.TabIndex = 14;
             this.button_composition.UseVisualStyleBackColor = false;
             this.button_composition.Click += new System.EventHandler(this.button_composition_Click);
+            this.button_composition.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button_association
             // 
@@ -151,6 +156,7 @@
             this.button_association.TabIndex = 13;
             this.button_association.UseVisualStyleBackColor = false;
             this.button_association.Click += new System.EventHandler(this.button_association_Click);
+            this.button_association.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button2
             // 
@@ -185,6 +191,7 @@
             this.button_inheritance.TabIndex = 12;
             this.button_inheritance.UseVisualStyleBackColor = false;
             this.button_inheritance.Click += new System.EventHandler(this.button_inheritance_Click);
+            this.button_inheritance.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button_file
             // 
@@ -217,6 +224,7 @@
             this.button_implementation.TabIndex = 11;
             this.button_implementation.UseVisualStyleBackColor = false;
             this.button_implementation.Click += new System.EventHandler(this.button_implementation_Click);
+            this.button_implementation.MouseHover += new System.EventHandler(this.relation_button_hover);
             // 
             // button4
             // 
@@ -360,5 +368,6 @@
         private Button button_generate_code;
         private Button button_save;
         private Panel panel1;
+        private ToolTip toolTip1;
     }
 }

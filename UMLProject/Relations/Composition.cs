@@ -8,15 +8,18 @@ using UMLProject.Enums;
 
 namespace UMLProject.Relations
 {
-    public class Inheritance : Relation
+    public class Composition : Relation
     {
-        public Inheritance(Box from) : base(from)
+        public Composition(Box from) : base(from)
         {
-            capPath.AddLine(-5, -5, 5, -5);
+            capPath.StartFigure();
             capPath.AddLine(-5, -5, 0, 0);
             capPath.AddLine(0, 0, 5, -5);
+            capPath.AddLine(-5, -5, 0, -10);
+            capPath.AddLine(5, -5, 0, -10);
+            capPath.CloseFigure();
 
-            this.Type = RelationType.Inheritance;
+            this.Type = RelationType.Composition;
         }
     }
 }
