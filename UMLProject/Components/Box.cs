@@ -185,5 +185,21 @@ namespace UMLProject.Components
                 this.Height = tmpH;
             }
         }
+
+        public void Edit()
+        {
+            BoxForm form = new BoxForm(this);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.Name = form.Box.Name;
+                this.Modifier = form.Box.Modifier;
+                this.Type = form.Box.Type;
+                this.Properties = form.Box.Properties;
+                this.Methods = form.Box.Methods;
+                this.Width = form.Box.Width;
+                this.Height = form.Box.Height;
+            }
+        }
     }
 }

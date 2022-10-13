@@ -22,6 +22,8 @@ namespace UMLProject.Relations
         public bool IsModified { get; set; } = false;
         public Box From { get; set; }
         public Box To { get; set; }
+        public string FromText { get; set; } = String.Empty;
+        public string ToText { get; set; } = String.Empty;
 
         protected GraphicsPath capPath = new GraphicsPath();
 
@@ -67,7 +69,12 @@ namespace UMLProject.Relations
 
             sPen.CustomEndCap = new CustomLineCap(null, capPath);
 
-            g.DrawString("X", Component.Font, Brushes.Black, StartX, StartY);
+            Location s = GetStartTextLocation();
+            Location e = GetEndTextLocation();
+
+            g.DrawString(FromText, Component.Font, Brushes.Black, s.X, s.Y);
+            g.DrawString(ToText, Component.Font, Brushes.Black, e.X, e.Y);
+            
             g.DrawLine(fPen, StartX, StartY, MidX, MidY);
             g.DrawLine(sPen, MidX, MidY, EndX, EndY);
 
@@ -91,6 +98,17 @@ namespace UMLProject.Relations
             IsSelected = false;
 
             base.MouseUp(x, y);
+        }
+
+        public void Edit()
+        {
+            RelationForm form = new RelationForm(From, To);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.FromText = form.From;
+                this.ToText = form.To;
+            }
         }
 
         public override void UpdateResizeButton()
@@ -207,9 +225,24 @@ namespace UMLProject.Relations
         private Location GetBottomLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width / 2, b.Y + b.Height));
         private Location GetLeftLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X, b.Y + b.Height / 2));
         private Location GetRightLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width, b.Y + b.Height / 2));
-
         private Location GetCustomBox(Box box, Func<Box, Location> func) => func(box);
 
+        //Get location for text
+        private Location GetStartTextLocation()
+        {
+            int x = StartX > MidX ? StartX - 25 : StartX + 5;
+            int y = StartX > MidY ? StartY - 20 : StartY + 10;
+
+            return new(x, y);
+        }
+
+        private Location GetEndTextLocation()
+        {
+            int x = EndX > MidX ? EndX - 25 : EndX + 5;
+            int y = EndY > MidY ? EndY - 20 : EndY + 10;
+
+            return new(x, y);
+        }
 
         //Functions for location updates
         private void UpdateLocationOfUnmodified()

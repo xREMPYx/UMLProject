@@ -119,12 +119,18 @@ namespace UMLProject.Components
         public void MouseDoubleClick(int x, int y)
         {
             this.ActiveBox = GetBoxInArea(x, y);
+            this.ActiveRelation = GetRelationInArea(x, y);
 
-            if(this.ActiveBox != null)
+            if (this.ActiveBox != null)
             {
-                UpdateBox();
+                this.ActiveBox.Edit();
 
                 this.ActiveBox.UpdateResizeButton();
+            }            
+
+            if(this.ActiveRelation != null)
+            {
+                this.ActiveRelation.Edit();
             }
         }
 
@@ -177,6 +183,7 @@ namespace UMLProject.Components
                                 .LastOrDefault();
         }
 
+        //Returns relation in area
         private Relation? GetRelationInArea(int x, int y)
         {
             return this.Relations.Where(r => r.IsInArea(x, y) || (r.IsResizeArrowInArea(x, y) && r.IsSelected))
@@ -207,22 +214,22 @@ namespace UMLProject.Components
                     .ForEach(r => r.SetUnSelected());
         }
 
-        //Updates box
-        private void UpdateBox()
-        {
-            BoxForm form = new BoxForm(this.ActiveBox);
+        ////Updates box
+        //private void UpdateBox()
+        //{
+        //    BoxForm form = new BoxForm(this.ActiveBox);
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                this.ActiveBox.Name = form.Box.Name;
-                this.ActiveBox.Modifier = form.Box.Modifier;
-                this.ActiveBox.Type = form.Box.Type;
-                this.ActiveBox.Properties = form.Box.Properties;
-                this.ActiveBox.Methods = form.Box.Methods;
-                this.ActiveBox.Width = form.Box.Width;
-                this.ActiveBox.Height = form.Box.Height;
-            }
-        }
+        //    if (form.ShowDialog() == DialogResult.OK)
+        //    {
+        //        this.ActiveBox.Name = form.Box.Name;
+        //        this.ActiveBox.Modifier = form.Box.Modifier;
+        //        this.ActiveBox.Type = form.Box.Type;
+        //        this.ActiveBox.Properties = form.Box.Properties;
+        //        this.ActiveBox.Methods = form.Box.Methods;
+        //        this.ActiveBox.Width = form.Box.Width;
+        //        this.ActiveBox.Height = form.Box.Height;
+        //    }
+        //}
 
         //Creates new box
         private void CreateNewBox(int x, int y)
