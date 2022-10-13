@@ -120,7 +120,7 @@ namespace UMLProject
 
                     foreach (Box b in area.Boxes)
                     {
-                        CsFileBuilder builder = new CsFileBuilder(b);                        
+                        CsFileBuilder builder = new CsFileBuilder(area.Relations, b);                        
 
                         File.WriteAllText($@"{dir}\{b.Name}.cs", builder.GetText());
                     }

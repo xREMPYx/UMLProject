@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using UMLProject.Components;
 using UMLProject.Enums;
 using UMLProject.Models;
+using UMLProject.Relations;
 
 namespace UMLProject.Utils
 {
     public class CsFileBuilder
     {        
         private StringBuilder stringBuilder { get; } = new StringBuilder();
-        private Box box { get; set; }
-        public CsFileBuilder(Box box)
+        public CsFileBuilder(List<Relation> relations, Box box)
         {
-            this.box = box;
+            
 
             stringBuilder.AppendLine("using System;");
 
