@@ -26,6 +26,8 @@ namespace UMLProject
             this.comboBox_modifier.Items.Add(AccessModifier.Private);
             this.comboBox_modifier.Items.Add(AccessModifier.Protected);
 
+            this.comboBox_modifier.SelectedIndex = 0;
+
             if(type == BoxElementType.Method)
             {
                 this.label_parameters.Visible = true;
@@ -57,6 +59,22 @@ namespace UMLProject
         private void button_cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void validation_string_empty(object sender, CancelEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+
+            if (String.IsNullOrEmpty(box.Text))
+            {
+                this.errorProvider1.SetError(box, "This field cannot be empty!");
+                e.Cancel = true;
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+                e.Cancel = false;
+            }
         }
     }
 }

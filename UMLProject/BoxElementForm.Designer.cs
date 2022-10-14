@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.comboBox_modifier = new System.Windows.Forms.ComboBox();
@@ -38,6 +39,8 @@
             this.button_confirm = new System.Windows.Forms.Button();
             this.textBox_parameters = new System.Windows.Forms.TextBox();
             this.label_parameters = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -55,6 +58,7 @@
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(121, 23);
             this.textBox_name.TabIndex = 4;
+            this.textBox_name.Validating += new System.ComponentModel.CancelEventHandler(this.validation_string_empty);
             // 
             // comboBox_modifier
             // 
@@ -80,6 +84,7 @@
             this.textBox_return_type.Name = "textBox_return_type";
             this.textBox_return_type.Size = new System.Drawing.Size(121, 23);
             this.textBox_return_type.TabIndex = 12;
+            this.textBox_return_type.Validating += new System.ComponentModel.CancelEventHandler(this.validation_string_empty);
             // 
             // label2
             // 
@@ -128,10 +133,15 @@
             this.label_parameters.Text = "Parameters:";
             this.label_parameters.Visible = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // BoxElementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(231, 183);
             this.Controls.Add(this.textBox_parameters);
             this.Controls.Add(this.label_parameters);
@@ -146,6 +156,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "BoxElementForm";
             this.Text = "BoxElementForm";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +173,6 @@
         private Button button_confirm;
         private TextBox textBox_parameters;
         private Label label_parameters;
+        private ErrorProvider errorProvider1;
     }
 }

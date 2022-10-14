@@ -189,11 +189,11 @@ namespace UMLProject.Relations
 
         private bool IsInRange(Location current, Location start, Location end)
         {
-            int sX = start.X > end.X ? end.X : start.X;
-            int cX = start.X > end.X ? start.X - end.X : end.X - start.X;
+            int sX = start.X >= end.X ? end.X : start.X;
+            int cX = start.X >= end.X ? start.X - end.X : end.X - start.X;
 
-            int sY = start.Y > end.Y ? end.Y : start.Y;
-            int cY = start.Y > end.Y ? start.Y - end.Y : end.Y - start.Y;
+            int sY = start.Y >= end.Y ? end.Y : start.Y;
+            int cY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
 
             bool isInrange = Enumerable.Range(sX, cX).Contains(current.X)
                           && Enumerable.Range(sY, cY).Contains(current.Y);
@@ -210,7 +210,7 @@ namespace UMLProject.Relations
 
             int lineEquation = (-vY * current.X) + (vX * current.Y) + c;
 
-            return lineEquation > -550 && lineEquation < 550;
+            return lineEquation > -1000 && lineEquation < 1000;
         }
 
         private Location GetMidLocation()

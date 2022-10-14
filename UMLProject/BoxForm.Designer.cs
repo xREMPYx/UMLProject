@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button_confirm = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +45,8 @@
             this.button_method_delete = new System.Windows.Forms.Button();
             this.button_method_add = new System.Windows.Forms.Button();
             this.listBox_methods = new System.Windows.Forms.ListBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_confirm
@@ -81,6 +84,7 @@
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(121, 23);
             this.textBox_name.TabIndex = 3;
+            this.textBox_name.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_name_Validating);
             // 
             // label2
             // 
@@ -194,6 +198,10 @@
             this.listBox_methods.Size = new System.Drawing.Size(120, 79);
             this.listBox_methods.TabIndex = 16;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // BoxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -218,6 +226,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BoxForm";
             this.Text = "BoxForm";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +250,6 @@
         private Button button_method_delete;
         private Button button_method_add;
         private ListBox listBox_methods;
+        private ErrorProvider errorProvider1;
     }
 }

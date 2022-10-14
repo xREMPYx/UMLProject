@@ -214,23 +214,6 @@ namespace UMLProject.Components
                     .ForEach(r => r.SetUnSelected());
         }
 
-        ////Updates box
-        //private void UpdateBox()
-        //{
-        //    BoxForm form = new BoxForm(this.ActiveBox);
-
-        //    if (form.ShowDialog() == DialogResult.OK)
-        //    {
-        //        this.ActiveBox.Name = form.Box.Name;
-        //        this.ActiveBox.Modifier = form.Box.Modifier;
-        //        this.ActiveBox.Type = form.Box.Type;
-        //        this.ActiveBox.Properties = form.Box.Properties;
-        //        this.ActiveBox.Methods = form.Box.Methods;
-        //        this.ActiveBox.Width = form.Box.Width;
-        //        this.ActiveBox.Height = form.Box.Height;
-        //    }
-        //}
-
         //Creates new box
         private void CreateNewBox(int x, int y)
         {
@@ -273,10 +256,12 @@ namespace UMLProject.Components
         //Deletes selected box
         public void Delete()
         {
-            this.Relations = this.Relations.Where(r => !(r.From == ActiveBox || r.To == ActiveBox)).ToList();
-
-            this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();    
+            if (this.Boxes.Any(b => b.IsSelected))
+            {
+                this.Relations = this.Relations.Where(r => !(r.From == ActiveBox || r.To == ActiveBox)).ToList();
+            }
             
+            this.Boxes = this.Boxes.Where(b => !b.IsSelected).ToList();            
             this.Relations = this.Relations.Where(r => !r.IsSelected).ToList();            
         }
 
@@ -297,7 +282,6 @@ namespace UMLProject.Components
             this.RelationType = null;
             this.NewBox = box;            
         }
-        
 
         public void SelectNewRelation(RelationType relation)
         {

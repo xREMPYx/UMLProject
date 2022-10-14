@@ -86,6 +86,7 @@ namespace UMLProject
 
         private void button_cancel_Click(object sender, EventArgs e)
         {
+            this.errorProvider1.Clear();
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -116,6 +117,21 @@ namespace UMLProject
 
             if (form.ShowDialog() == DialogResult.OK)
                 this.listBox_methods.Items.Add(form.Element);
+        }
+
+        private void textBox_name_Validating(object sender, CancelEventArgs e)
+        {
+            
+            if (String.IsNullOrEmpty(this.textBox_name.Text))
+            {
+                this.errorProvider1.SetError(this.textBox_name, "This field cannot be empty!");
+                e.Cancel = true;
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+                e.Cancel = false;
+            }
         }
     }
 }
