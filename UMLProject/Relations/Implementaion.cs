@@ -12,9 +12,9 @@ namespace UMLProject.Relations
     {
         public Implementaion(Box from) : base(from)
         {
-            capPath.AddLine(-5, -5, 5, -5);
-            capPath.AddLine(-5, -5, 0, 0);
-            capPath.AddLine(0, 0, 5, -5);
+            Point[] points = { new Point(-5, -5), new Point(5, -5), new Point(0, 0) };
+
+            capPath.AddPolygon(points);
 
             this.Type = RelationType.Implementation;
 

@@ -12,10 +12,9 @@ namespace UMLProject.Relations
     {
         public Aggregation(Box from) : base(from)
         {
-            capPath.AddLine(-5, -5, 0, 0);
-            capPath.AddLine(0, 0, 5, -5);
-            capPath.AddLine(-5, -5, 0, -10);
-            capPath.AddLine(5, -5, 0, -10);
+            Point[] points = { new Point(0, 0), new Point(5, -5), new Point(0, -10), new Point(-5, -5) };
+
+            capPath.AddPolygon(points);
 
             this.Type = RelationType.Aggregation;
         }
