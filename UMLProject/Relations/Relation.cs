@@ -221,11 +221,10 @@ namespace UMLProject.Relations
             return new Location(x, y);
         }
 
-        private Location GetTopLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width / 2, b.Y));
-        private Location GetBottomLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width / 2, b.Y + b.Height));
-        private Location GetLeftLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X, b.Y + b.Height / 2));
-        private Location GetRightLocation(Box box) => GetCustomBox(box, (b) => new Location(b.X + b.Width, b.Y + b.Height / 2));
-        private Location GetCustomBox(Box box, Func<Box, Location> func) => func(box);
+        private Location GetTopLocation(Box box) => new Location(box.X + box.Width / 2, box.Y);
+        private Location GetBottomLocation(Box box) => new Location(box.X + box.Width / 2, box.Y + box.Height);
+        private Location GetLeftLocation(Box box) => new Location(box.X, box.Y + box.Height / 2);
+        private Location GetRightLocation(Box box) => new Location(box.X + box.Width, box.Y + box.Height / 2);
 
         //Get location for text
         private Location GetStartTextLocation()
@@ -286,26 +285,28 @@ namespace UMLProject.Relations
             if (this.From.X + this.From.Width >= this.MidX)
                 UpdateStartLocation(GetLeftLocation(From));
 
-            if (this.From.Y >= this.MidY)
+            if (this.From.Y >= this.MidY && MidX > this.From.X)
                 UpdateStartLocation(GetTopLocation(From));
+
+            if (this.From.Y + this.From.Height > this.MidY && MidX > this.From.X + this.From.Width)
+                UpdateStartLocation(GetRightLocation(From));
 
             if (this.From.Y + this.From.Height <= MidY)
                 UpdateStartLocation(GetBottomLocation(From));
 
-            if (this.From.X + this.From.Width <= this.MidX)
-                UpdateStartLocation(GetRightLocation(From));
+            
 
             if (this.To.X + this.To.Width >= this.MidX)
                 UpdateEndLocation(GetLeftLocation(To));
 
-            if (this.To.Y >= this.MidY)
+            if (this.To.Y >= this.MidY && MidX > this.To.X)
                 UpdateEndLocation(GetTopLocation(To));
 
-            if (this.To.Y + this.To.Height <= MidY)
-                UpdateEndLocation(GetBottomLocation(To));
-
-            if (this.To.X + this.To.Width <= this.MidX)
+            if (this.To.Y + this.To.Height > this.MidY && MidX > this.To.X + this.To.Width)
                 UpdateEndLocation(GetRightLocation(To));
+
+            if (this.To.Y + this.To.Height <= MidY)
+                UpdateEndLocation(GetBottomLocation(To));            
         }
     }
 }
