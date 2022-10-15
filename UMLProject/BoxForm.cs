@@ -34,7 +34,7 @@ namespace UMLProject
             this.textBox_name.Text = box.Name;
 
             this.listBox_methods.Items.AddRange(box.Methods.ToArray());
-            this.listBox_properties.Items.AddRange(box.Properties.ToArray());
+            this.listBox_properties.Items.AddRange(box.Properties.ToArray());            
         }
 
         public BoxForm(int x, int y)
@@ -63,6 +63,9 @@ namespace UMLProject
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
+            if (!this.ValidateChildren())
+                return;
+
             this.DialogResult = DialogResult.OK;
            
             string name = this.textBox_name.Text;
@@ -86,7 +89,6 @@ namespace UMLProject
 
         private void button_cancel_Click(object sender, EventArgs e)
         {
-            this.errorProvider1.Clear();
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -120,18 +122,21 @@ namespace UMLProject
         }
 
         private void textBox_name_Validating(object sender, CancelEventArgs e)
-        {
-            
-            if (String.IsNullOrEmpty(this.textBox_name.Text))
+        {            
+            TextBox textbox = (TextBox)sender;
+
+            this.errorProvider1.SetError(textbox, null);
+
+            if (string.IsNullOrWhiteSpace(textbox.Text))
             {
-                this.errorProvider1.SetError(this.textBox_name, "This field cannot be empty!");
+                this.errorProvider1.SetError(textbox, "This field cannot be empty!");
                 e.Cancel = true;
             }
-            else
-            {
-                this.errorProvider1.Clear();
-                e.Cancel = false;
-            }
+        }
+
+        private void BoxForm_Validating(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

@@ -54,7 +54,7 @@
             this.button_confirm.Location = new System.Drawing.Point(12, 289);
             this.button_confirm.Name = "button_confirm";
             this.button_confirm.Size = new System.Drawing.Size(84, 26);
-            this.button_confirm.TabIndex = 0;
+            this.button_confirm.TabIndex = 7;
             this.button_confirm.Text = "Confirm";
             this.button_confirm.UseVisualStyleBackColor = true;
             this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
@@ -64,7 +64,7 @@
             this.button_cancel.Location = new System.Drawing.Point(128, 289);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(84, 26);
-            this.button_cancel.TabIndex = 1;
+            this.button_cancel.TabIndex = 8;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
@@ -83,7 +83,7 @@
             this.textBox_name.Location = new System.Drawing.Point(91, 12);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(121, 23);
-            this.textBox_name.TabIndex = 3;
+            this.textBox_name.TabIndex = 0;
             this.textBox_name.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_name_Validating);
             // 
             // label2
@@ -102,7 +102,7 @@
             this.listBox_properties.Location = new System.Drawing.Point(92, 99);
             this.listBox_properties.Name = "listBox_properties";
             this.listBox_properties.Size = new System.Drawing.Size(120, 79);
-            this.listBox_properties.TabIndex = 5;
+            this.listBox_properties.TabIndex = 3;
             // 
             // comboBox_type
             // 
@@ -111,7 +111,7 @@
             this.comboBox_type.Location = new System.Drawing.Point(91, 41);
             this.comboBox_type.Name = "comboBox_type";
             this.comboBox_type.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_type.TabIndex = 6;
+            this.comboBox_type.TabIndex = 1;
             // 
             // comboBox_modifier
             // 
@@ -120,7 +120,7 @@
             this.comboBox_modifier.Location = new System.Drawing.Point(91, 70);
             this.comboBox_modifier.Name = "comboBox_modifier";
             this.comboBox_modifier.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_modifier.TabIndex = 8;
+            this.comboBox_modifier.TabIndex = 2;
             // 
             // label3
             // 
@@ -196,7 +196,7 @@
             this.listBox_methods.Location = new System.Drawing.Point(92, 184);
             this.listBox_methods.Name = "listBox_methods";
             this.listBox_methods.Size = new System.Drawing.Size(120, 79);
-            this.listBox_methods.TabIndex = 16;
+            this.listBox_methods.TabIndex = 4;
             // 
             // errorProvider1
             // 
@@ -206,6 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(225, 324);
             this.Controls.Add(this.listBox_methods);
             this.Controls.Add(this.button_method_delete);
@@ -226,6 +227,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BoxForm";
             this.Text = "BoxForm";
+            this.Validating += new System.ComponentModel.CancelEventHandler(this.BoxForm_Validating);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

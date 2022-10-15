@@ -44,6 +44,9 @@ namespace UMLProject
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
+            if (!this.ValidateChildren())
+                return;
+
             if (this.type == BoxElementType.Method)
             {
                 ((Method)this.Element).Parameters = this.textBox_parameters.Text;
