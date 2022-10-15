@@ -12,7 +12,7 @@ namespace UMLProject.Relations
     {
         public Aggregation(Box from) : base(from)
         {
-            Point[] points = { new Point(0, 0), new Point(5, -5), new Point(0, -10), new Point(-5, -5) };
+            Point[] points = { new Point(0, 6), new Point(3, 3), new Point(0, 0), new Point(-3, 3) };
 
             capPath.AddPolygon(points);
 

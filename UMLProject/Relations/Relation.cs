@@ -210,7 +210,7 @@ namespace UMLProject.Relations
 
             int lineEquation = (-vY * current.X) + (vX * current.Y) + c;
 
-            return lineEquation > -1000 && lineEquation < 1000;
+            return lineEquation > -500 && lineEquation < 500;
         }
 
         private Location GetMidLocation()
@@ -221,10 +221,32 @@ namespace UMLProject.Relations
             return new Location(x, y);
         }
 
-        private Location GetTopLocation(Box box) => new Location(box.X + box.Width / 2, box.Y);
-        private Location GetBottomLocation(Box box) => new Location(box.X + box.Width / 2, box.Y + box.Height);
-        private Location GetLeftLocation(Box box) => new Location(box.X, box.Y + box.Height / 2);
-        private Location GetRightLocation(Box box) => new Location(box.X + box.Width, box.Y + box.Height / 2);
+        private Location GetTopLocation(Box box, bool isEnd)
+        {
+            int pad = RelationGetter.GetRelationPadding(Type, isEnd);
+
+            return new Location(box.X + box.Width / 2, box.Y - pad);
+        }
+        private Location GetBottomLocation(Box box, bool isEnd)
+        {
+            int pad = RelationGetter.GetRelationPadding(Type, isEnd);
+
+            return new Location(box.X + box.Width / 2, box.Y + box.Height + pad);
+        }
+
+        private Location GetLeftLocation(Box box, bool isEnd)
+        {
+            int pad = RelationGetter.GetRelationPadding(Type, isEnd);
+
+            return new Location(box.X - pad, box.Y + box.Height / 2);
+        }
+        private Location GetRightLocation(Box box, bool isEnd)
+        {
+            int pad = RelationGetter.GetRelationPadding(Type, isEnd);
+
+            return new Location(box.X + box.Width + pad, box.Y + box.Height / 2);
+        }
+
 
         //Get location for text
         private Location GetStartTextLocation()
@@ -251,30 +273,30 @@ namespace UMLProject.Relations
 
             if (this.From.X > this.To.X)
             {
-                UpdateStartLocation(GetLeftLocation(From));
-                UpdateEndLocation(GetRightLocation(To));
+                UpdateStartLocation(GetLeftLocation(From, false));
+                UpdateEndLocation(GetRightLocation(To, true));
             }
 
             if (this.From.X < this.To.X)
             {
-                UpdateStartLocation(GetRightLocation(From));
-                UpdateEndLocation(GetLeftLocation(To));
+                UpdateStartLocation(GetRightLocation(From, false));
+                UpdateEndLocation(GetLeftLocation(To, true));
             }
 
             if (this.From.Y + this.From.Height < this.To.Y)
             {
-                UpdateStartLocation(GetBottomLocation(From));
+                UpdateStartLocation(GetBottomLocation(From, false));
 
                 if (this.To.X < this.From.X + this.From.Width / 2)
-                    UpdateEndLocation(GetTopLocation(To));
+                    UpdateEndLocation(GetTopLocation(To, true));
             }
 
             if (this.To.Y + this.To.Height < this.From.Y)
             {
-                UpdateEndLocation(GetBottomLocation(To));
+                UpdateEndLocation(GetBottomLocation(To, true));
 
                 if (this.From.X < this.To.X + this.To.Width / 2)
-                    UpdateStartLocation(GetTopLocation(From));
+                    UpdateStartLocation(GetTopLocation(From, false));
             }
 
             UpdateResizeButton();
@@ -283,30 +305,28 @@ namespace UMLProject.Relations
         private void UpdateLocationOfModified()
         {
             if (this.From.X + this.From.Width >= this.MidX)
-                UpdateStartLocation(GetLeftLocation(From));
+                UpdateStartLocation(GetLeftLocation(From, false));
 
             if (this.From.Y >= this.MidY && MidX > this.From.X)
-                UpdateStartLocation(GetTopLocation(From));
+                UpdateStartLocation(GetTopLocation(From, false));
 
             if (this.From.Y + this.From.Height > this.MidY && MidX > this.From.X + this.From.Width)
-                UpdateStartLocation(GetRightLocation(From));
+                UpdateStartLocation(GetRightLocation(From, false));
 
             if (this.From.Y + this.From.Height <= MidY)
-                UpdateStartLocation(GetBottomLocation(From));
-
+                UpdateStartLocation(GetBottomLocation(From, false));
             
-
             if (this.To.X + this.To.Width >= this.MidX)
-                UpdateEndLocation(GetLeftLocation(To));
+                UpdateEndLocation(GetLeftLocation(To, true));
 
             if (this.To.Y >= this.MidY && MidX > this.To.X)
-                UpdateEndLocation(GetTopLocation(To));
+                UpdateEndLocation(GetTopLocation(To, true));
 
             if (this.To.Y + this.To.Height > this.MidY && MidX > this.To.X + this.To.Width)
-                UpdateEndLocation(GetRightLocation(To));
+                UpdateEndLocation(GetRightLocation(To, true));
 
             if (this.To.Y + this.To.Height <= MidY)
-                UpdateEndLocation(GetBottomLocation(To));            
+                UpdateEndLocation(GetBottomLocation(To, true));            
         }
     }
 }

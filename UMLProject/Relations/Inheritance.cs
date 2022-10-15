@@ -12,7 +12,7 @@ namespace UMLProject.Relations
     {
         public Inheritance(Box from) : base(from)
         {
-            Point[] points = { new Point(-5, -5), new Point(5, -5), new Point(0, 0) };
+            Point[] points = { new Point(-3, 0), new Point(3, 0), new Point(0, 3) };
 
             capPath.AddPolygon(points);
 

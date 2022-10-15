@@ -12,8 +12,8 @@ namespace UMLProject.Relations
     {
         public Dependency(Box from) : base(from)
         {
-            capPath.AddLine(-5, -5, 0, 0);
-            capPath.AddLine(0, 0, 5, -5);
+            capPath.AddLine(-3, -3, 0, 0);
+            capPath.AddLine(0, 0, 3, -3);
 
             this.Type = RelationType.Dependency;
 

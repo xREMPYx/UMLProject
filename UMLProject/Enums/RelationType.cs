@@ -33,5 +33,22 @@ namespace UMLProject.Enums
 
             return relations[relation];
         }
+
+        public static int GetRelationPadding(RelationType relation, bool isEnd)
+        {
+            if (!isEnd)
+                return 0;
+
+            Dictionary<RelationType, int> relationPaddings = new Dictionary<RelationType, int>();
+
+            relationPaddings.Add(RelationType.Association, 0);
+            relationPaddings.Add(RelationType.Inheritance, 8);
+            relationPaddings.Add(RelationType.Implementation, 8);
+            relationPaddings.Add(RelationType.Dependency, 0);
+            relationPaddings.Add(RelationType.Aggregation, 8);
+            relationPaddings.Add(RelationType.Composition, 0);
+
+            return relationPaddings[relation];
+        }
     }
 }
