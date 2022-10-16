@@ -43,13 +43,13 @@ namespace UMLProject
         }
         public BoxElementForm(BoxElementType type, BoxElement element) : this(type)
         {
-            this.comboBox_modifier.SelectedItem = (int)element.Modifier;
+            this.comboBox_modifier.SelectedItem = element.Modifier;
             this.textBox_return_type.Text = element.ReturnType;
             this.textBox_name.Text = element.Name;
 
             if (this.type == BoxElementType.Method)
             {
-                this.textBox_parameters.Text = ((Method)this.Element).Parameters;
+                this.textBox_parameters.Text = ((Method)element).Parameters;
             }
         }
 
@@ -66,7 +66,7 @@ namespace UMLProject
 
             this.Element.ReturnType = this.textBox_return_type.Text;
             this.Element.Name = this.textBox_name.Text;
-            this.Element.Modifier = (AccessModifier)this.comboBox_modifier.SelectedItem;            
+            this.Element.Modifier = (AccessModifier)this.comboBox_modifier.SelectedItem;                        
 
             this.DialogResult = DialogResult.OK;
         }

@@ -229,7 +229,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BoxForm";
             this.Text = "BoxForm";
-            this.Validating += new System.ComponentModel.CancelEventHandler(this.BoxForm_Validating);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

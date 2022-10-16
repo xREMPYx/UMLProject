@@ -134,26 +134,8 @@ namespace UMLProject
             }
         }
 
-        private void BoxForm_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
         private void listBox_properties_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //if (this.Box.Properties.Count == 0)
-            //    return;
-
-            //int index = this.listBox_properties.SelectedIndex;
-
-            //Property property = this.Box.Properties[index];
-
-            //BoxElementForm form = new BoxElementForm(BoxElementType.Property, property);
-
-            //if(form.ShowDialog() == DialogResult.OK)
-            //{
-            //    this.listBox_properties.Items[index] = (Property)form.Element;
-            //}
             EditBoxElement(sender, BoxElementType.Property);
         }
 
@@ -175,7 +157,7 @@ namespace UMLProject
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                listBox.SelectedItem = form.Element;              
+                listBox.Items[listBox.SelectedIndex] = form.Element;              
             }
         }
     }
