@@ -138,5 +138,45 @@ namespace UMLProject
         {
 
         }
+
+        private void listBox_properties_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //if (this.Box.Properties.Count == 0)
+            //    return;
+
+            //int index = this.listBox_properties.SelectedIndex;
+
+            //Property property = this.Box.Properties[index];
+
+            //BoxElementForm form = new BoxElementForm(BoxElementType.Property, property);
+
+            //if(form.ShowDialog() == DialogResult.OK)
+            //{
+            //    this.listBox_properties.Items[index] = (Property)form.Element;
+            //}
+            EditBoxElement(sender, BoxElementType.Property);
+        }
+
+        private void listBox_methods_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            EditBoxElement(sender, BoxElementType.Method);
+        }
+
+        private void EditBoxElement(object sender, BoxElementType type)
+        {
+            ListBox listBox = (ListBox)sender;
+
+            if (listBox.Items.Count == 0)
+                return;
+
+            BoxElement element = (BoxElement)listBox.SelectedItem;
+
+            BoxElementForm form = new BoxElementForm(type, element);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                listBox.SelectedItem = form.Element;              
+            }
+        }
     }
 }

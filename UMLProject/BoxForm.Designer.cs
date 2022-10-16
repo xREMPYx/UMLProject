@@ -103,6 +103,7 @@
             this.listBox_properties.Name = "listBox_properties";
             this.listBox_properties.Size = new System.Drawing.Size(120, 79);
             this.listBox_properties.TabIndex = 3;
+            this.listBox_properties.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_properties_MouseDoubleClick);
             // 
             // comboBox_type
             // 
@@ -197,6 +198,7 @@
             this.listBox_methods.Name = "listBox_methods";
             this.listBox_methods.Size = new System.Drawing.Size(120, 79);
             this.listBox_methods.TabIndex = 4;
+            this.listBox_methods.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_methods_MouseDoubleClick);
             // 
             // errorProvider1
             // 

@@ -16,7 +16,7 @@ namespace UMLProject
     {
         public BoxElement Element { get; private set; }
 
-        private BoxElementType type;
+        private BoxElementType type;        
 
         public BoxElementForm(BoxElementType type)
         {
@@ -41,6 +41,18 @@ namespace UMLProject
 
             this.type = type;
         }
+        public BoxElementForm(BoxElementType type, BoxElement element) : this(type)
+        {
+            this.comboBox_modifier.SelectedItem = (int)element.Modifier;
+            this.textBox_return_type.Text = element.ReturnType;
+            this.textBox_name.Text = element.Name;
+
+            if (this.type == BoxElementType.Method)
+            {
+                this.textBox_parameters.Text = ((Method)this.Element).Parameters;
+            }
+        }
+
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
