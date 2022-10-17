@@ -79,7 +79,7 @@ namespace UMLProject.Components
             {
                 this.ActiveRelation.MouseDown(x, y);
             }
-            else if (this.NewBox != null)
+            else if (ShouldCreateNewBox())
             {
                 CreateNewBox(x, y);
             }
@@ -190,6 +190,7 @@ namespace UMLProject.Components
 
         private bool IsRelationActive() => ActiveRelation != null;
         private bool IsBoxActive() => ActiveBox != null;
+        private bool ShouldCreateNewBox() => this.NewBox != null;
 
         //Marks current area
         private void MarkHoveredArea(int x, int y)
