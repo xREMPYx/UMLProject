@@ -100,6 +100,22 @@ namespace UMLProject.Relations
             base.MouseUp(x, y);
         }
 
+        public void DoubleClick(int x, int y)
+        {
+            if(IsResizeArrowInArea(x, y))
+            {
+                this.IsModified = false;
+                Location l = GetMidLocation();
+                this.MidX = l.X;
+                this.MidY = l.Y;
+                this.UpdateLocationAccordingly();
+            }
+            else
+            {
+                Edit();
+            }
+        }
+
         public void Edit()
         {
             RelationForm form = new RelationForm(From, To);
@@ -195,8 +211,16 @@ namespace UMLProject.Relations
             int sY = start.Y >= end.Y ? end.Y : start.Y;
             int cY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
 
-            bool isInrange = Enumerable.Range(sX, cX).Contains(current.X)
-                          && Enumerable.Range(sY, cY).Contains(current.Y);
+            int t = 50;
+
+            sX -= t;
+            cX += t;
+
+            sY -= t;
+            cY += t;
+
+            bool isInrange = Enumerable.Range(sX - 20, cX + 20).Contains(current.X)
+                          && Enumerable.Range(sY - 20, cY + 20).Contains(current.Y);
 
             return isInrange;
         }

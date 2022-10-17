@@ -128,7 +128,7 @@ namespace UMLProject.Components
 
             if(this.ActiveRelation != null)
             {
-                this.ActiveRelation.Edit();
+                this.ActiveRelation.DoubleClick(x, y);
             }
         }
 
@@ -186,9 +186,7 @@ namespace UMLProject.Components
         {
             return this.Relations.Where(r => r.IsInArea(x, y) || (r.IsResizeArrowInArea(x, y) && r.IsSelected))
                                 .LastOrDefault();
-        }
-
-        
+        }        
 
         private bool IsRelationActive() => ActiveRelation != null;
         private bool IsBoxActive() => ActiveBox != null;

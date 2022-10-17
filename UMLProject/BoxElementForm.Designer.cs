@@ -142,7 +142,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(231, 183);
+            this.ClientSize = new System.Drawing.Size(236, 183);
             this.Controls.Add(this.textBox_parameters);
             this.Controls.Add(this.label_parameters);
             this.Controls.Add(this.button_confirm);
