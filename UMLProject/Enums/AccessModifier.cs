@@ -8,8 +8,8 @@ namespace UMLProject.Enums
 {
     public enum AccessModifier
     {
+        Public,
         Private,
-        Protected,
-        Public     
+        Protected            
     }
 }

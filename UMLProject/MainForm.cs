@@ -153,7 +153,7 @@ namespace UMLProject
 
                     string text = File.ReadAllText(file);
 
-                    this.area = Formatter.GetPaintingArea(text);
+                    //this.area = Formatter.GetPaintingArea(text);
                 }
             };
         }

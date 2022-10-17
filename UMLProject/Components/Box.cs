@@ -17,8 +17,6 @@ namespace UMLProject.Components
         public BoxType Type { get; set; }
         public List<Method> Methods { get; set; } = new List<Method>();
         public List<Property> Properties { get; set; } = new List<Property>();
-        public List<Relation> From { get; set; } = new List<Relation>();
-        public List<Relation> To { get; set; } = new List<Relation>();
         private MouseState mouseState { get; set; } = MouseState.Up;
         private TextBuilder textBuilder { get; set; }
 

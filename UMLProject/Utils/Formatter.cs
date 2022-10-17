@@ -10,14 +10,14 @@ namespace UMLProject.Utils
 {
     public static class Formatter
     {
-        public static string Serialize(PaintingArea area)
+        public static string Serialize<T>(T area)
         {
             return JsonConvert.SerializeObject(area);
         }
 
-        public static PaintingArea GetPaintingArea(string area)
+        public static T GetPaintingArea<T>(string area)
         {
-            return JsonConvert.DeserializeObject<PaintingArea>(area);
+            return JsonConvert.DeserializeObject<T>(area);
         }
     }
 }

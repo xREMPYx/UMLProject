@@ -30,6 +30,8 @@ namespace UMLProject.Relations
         protected Pen Pen = new Pen(Brushes.Black, 2) { DashPattern = new float[] { 1 }
     };
         
+        public Relation() { }
+
         public Relation(Box from)
         {
             UpdateResizeFunc((x, y) =>
