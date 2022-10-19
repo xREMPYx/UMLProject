@@ -19,10 +19,15 @@ namespace UMLProject.Models.DataModels
         public int EndX { get; set; }
         public int EndY { get; set; }
         public bool IsModified { get; set; }
-        public Box From { get; set; }
-        public Box To { get; set; }
+        public string FromName { get; set; }
+        public string ToName { get; set; }
         public string FromText { get; set; } = String.Empty;
         public string ToText { get; set; } = String.Empty;
+
+        public RelationData()
+        {
+
+        }
 
         public RelationData(Relation relation)
         {
@@ -33,10 +38,11 @@ namespace UMLProject.Models.DataModels
             this.MidY = relation.MidY;
             this.EndX = relation.EndX;
             this.EndY = relation.EndY;
-            this.From = relation.From;
-            this.To = relation.To;
+            this.FromName = relation.From.Name;
+            this.ToName = relation.To.Name;
             this.FromText = relation.FromText;
             this.ToText = relation.ToText;
+            this.IsModified = relation.IsModified;                        
         }
     }
 }

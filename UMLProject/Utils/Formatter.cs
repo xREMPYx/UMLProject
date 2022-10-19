@@ -15,8 +15,8 @@ namespace UMLProject.Utils
             return JsonConvert.SerializeObject(area);
         }
 
-        public static T GetPaintingArea<T>(string area)
-        {
+        public static T GetDeserialized<T>(string area)
+        {            
             return JsonConvert.DeserializeObject<T>(area);
         }
     }

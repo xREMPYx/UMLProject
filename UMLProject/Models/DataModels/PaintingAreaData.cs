@@ -8,13 +8,15 @@ namespace UMLProject.Models.DataModels
 {
     public class PaintingAreaData
     {
-        public SizeF Size { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
         public List<BoxData> boxDatas { get; set; }
         public List<RelationData> relationDatas { get; set; }
 
         public PaintingAreaData(SizeF size, List<BoxData> boxDatas, List<RelationData> relationDatas)
         {
-            this.Size = size;
+            this.Width = size.Width;
+            this.Height = size.Height;
             this.boxDatas = boxDatas;
             this.relationDatas = relationDatas;
         }

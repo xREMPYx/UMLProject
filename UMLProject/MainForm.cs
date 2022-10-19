@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using UMLProject.Components;
 using UMLProject.Enums;
 using UMLProject.Utils;
@@ -138,7 +139,12 @@ namespace UMLProject
                 {
                     string file = saveFileDialog.FileName;
 
-                    File.WriteAllText(file, Formatter.Serialize(area));
+                    if (!(file.Split('.').Length == 2))
+                        file += ".json";
+
+                    DataService service = new DataService(area);                    
+
+                    service.Export(file);
                 }
             };
         }
@@ -151,9 +157,11 @@ namespace UMLProject
                 {
                     string file = openFileDialog.FileName;
 
+                    DataService service = new DataService(area);
+
                     string text = File.ReadAllText(file);
 
-                    //this.area = Formatter.GetPaintingArea(text);
+                    service.Import(text);
                 }
             };
         }

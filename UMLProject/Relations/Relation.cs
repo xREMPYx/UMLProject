@@ -27,12 +27,9 @@ namespace UMLProject.Relations
 
         protected GraphicsPath capPath = new GraphicsPath();
 
-        protected Pen Pen = new Pen(Brushes.Black, 2) { DashPattern = new float[] { 1 }
-    };
+        protected Pen Pen = new Pen(Brushes.Black, 2) { DashPattern = new float[] { 1 } };
         
-        public Relation() { }
-
-        public Relation(Box from)
+        public Relation(Box from = null)
         {
             UpdateResizeFunc((x, y) =>
             {
@@ -51,17 +48,17 @@ namespace UMLProject.Relations
             });
 
             this.SetResizeButtonSize(6);
-            this.From = from;
+            this.From = from;            
 
-            SetResizeButtonUnVisible();
+            //SetResizeButtonUnVisible();
 
-            Pen.DashPattern = new float[] { 1 };
+            Pen.DashPattern = new float[] { 1 };            
         }
 
         public override void Draw(Graphics g)
-        {
+        {            
             this.UpdateLocationAccordingly();
-            this.UpdateResizeButton();            
+            this.UpdateResizeButton();
 
             Pen fPen = new Pen(Pen.Brush, Pen.Width);
             Pen sPen = new Pen(Pen.Brush, Pen.Width);
@@ -86,6 +83,8 @@ namespace UMLProject.Relations
         public override void MouseDown(int x, int y)
         {
             IsSelected = true;
+
+            UpdateResizeButton();
 
             base.MouseDown(x, y);
         }
@@ -132,6 +131,8 @@ namespace UMLProject.Relations
         public override void UpdateResizeButton()
         {
             Location l = GetMidLocation();
+
+            this.resizeButton.UpdateLocation(MidX, MidY);            
 
             if (IsModified)
                 return;
@@ -187,7 +188,7 @@ namespace UMLProject.Relations
 
         public override bool IsInArea(int x, int y)
         {
-            Pen.Color = IsSelected ? Color.DarkBlue : Color.Black;
+            Pen.Color = IsSelected ? Color.DarkBlue : Color.Black;            
 
             Location current = new(x, y);
             Location s = new(StartX, StartY);
@@ -202,27 +203,32 @@ namespace UMLProject.Relations
 
             Pen.Color = Color.DarkBlue;
 
+            if (To != null)
+                SetResizeButtonVisible();
+            else
+                SetResizeButtonUnVisible();
+
             return true;
         }
 
         private bool IsInRange(Location current, Location start, Location end)
         {
             int sX = start.X >= end.X ? end.X : start.X;
-            int cX = start.X >= end.X ? start.X - end.X : end.X - start.X;
+            int eX = start.X >= end.X ? start.X - end.X : end.X - start.X;
 
             int sY = start.Y >= end.Y ? end.Y : start.Y;
-            int cY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
+            int eY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
 
             int t = 50;
 
             sX -= t;
-            cX += t;
+            eX += t;
 
             sY -= t;
-            cY += t;
+            eY += t;
 
-            bool isInrange = Enumerable.Range(sX - 20, cX + 20).Contains(current.X)
-                          && Enumerable.Range(sY - 20, cY + 20).Contains(current.Y);
+            bool isInrange = Enumerable.Range(sX, eX).Contains(current.X)
+                          && Enumerable.Range(sY, eY).Contains(current.Y);
 
             return isInrange;
         }
@@ -236,7 +242,9 @@ namespace UMLProject.Relations
 
             int lineEquation = (-vY * current.X) + (vX * current.Y) + c;
 
-            return lineEquation > -500 && lineEquation < 500;
+            int t = 600;
+
+            return lineEquation > -t && lineEquation < t;
         }
 
         private Location GetMidLocation()

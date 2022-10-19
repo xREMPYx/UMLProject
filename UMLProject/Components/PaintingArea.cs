@@ -19,8 +19,8 @@ namespace UMLProject.Components
         private Box? NewBox { get; set; } = null;
         private RelationType? RelationType { get; set; } = null;
         private Relation? Relation { get; set; } = null;
-        public List<Box> Boxes { get; private set; } = new List<Box>();
-        public List<Relation> Relations { get; private set; } = new List<Relation>();
+        public List<Box> Boxes { get; set; } = new List<Box>();
+        public List<Relation> Relations { get; set; } = new List<Relation>();
 
         public PaintingArea()
         {
@@ -276,6 +276,13 @@ namespace UMLProject.Components
 
         private void UpdateSizeOfPaintingArea() => PaintingArea.Size = new PaintingAreaSize(this.Width, this.Height);
 
+        public void SetSize(int width, int height)
+        {
+            PaintingArea.Size = new PaintingAreaSize(width, height);        
+            this.Width = width;
+            this.Height = height;
+        }
+
         public void SelectNewBox(Box box)
         {
             this.RelationType = null;
@@ -286,6 +293,6 @@ namespace UMLProject.Components
         {
             this.ActiveBox = null;
             this.RelationType = relation;
-        }
+        }        
     }
 }

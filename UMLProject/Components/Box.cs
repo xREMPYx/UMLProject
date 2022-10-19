@@ -20,7 +20,10 @@ namespace UMLProject.Components
         private MouseState mouseState { get; set; } = MouseState.Up;
         private TextBuilder textBuilder { get; set; }
 
-        public Box() { }
+        public Box()
+        {
+            
+        }
 
         public Box(string name, AccessModifier modifier, BoxType type, List<Method> methods, List<Property> properties)
         {
@@ -45,7 +48,9 @@ namespace UMLProject.Components
         }
 
         public override void Draw(Graphics g)
-        {            
+        {
+            UpdateResizeButton();
+
             g.FillRectangle(Brushes.White, X, Y, Width, Height);
             g.DrawRectangle(IsActivePen, X, Y, Width, Height);            
 
@@ -77,12 +82,8 @@ namespace UMLProject.Components
 
             this.mouseState = MouseState.Down;
 
-            Location location = new Location()
-            {
-                X = x,
-                Y = y
-            };
-
+            Location location = new Location(x, y);
+            
             mouseDown = location;
 
             IsSelected = true;
