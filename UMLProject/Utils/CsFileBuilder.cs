@@ -47,7 +47,7 @@ namespace UMLProject.Utils
             IText text = new InitText(stringBuilder.ToString());
 
             text = new ClassText(classText, text);
-            text = new NameSpaceText("project", text);
+            text = new NameSpaceText("Project", text);
             text = new UsingText(text);
 
             this.text = text;

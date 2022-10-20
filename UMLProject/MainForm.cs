@@ -104,7 +104,7 @@ namespace UMLProject
                         ? PictureType.JPG 
                         : PictureType.PNG;
 
-                    PictureBuilder builder = new PictureBuilder(area.Boxes, type);
+                    PictureBuilder builder = new PictureBuilder(area, type);
 
                     builder.GetPicture().Save(saveFileDialog.FileName);
                 }

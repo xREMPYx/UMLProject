@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 using UMLProject.Components;
 using UMLProject.Enums;
 using UMLProject.Models;
+using UMLProject.Relations;
 
 namespace UMLProject.Utils
 {
     public class PictureBuilder
     {
         private List<Box> boxes { get; set; }
+        private List<Relation> relations { get; set; }
 
-        private Bitmap bitmap = new Bitmap(PaintingArea.Size.Width, PaintingArea.Size.Height);
+        private Bitmap bitmap = new Bitmap(PaintingArea.Size.Width + 5, PaintingArea.Size.Height + 5);
 
-        public PictureBuilder(List<Box> boxes, PictureType type)
+        public PictureBuilder(PaintingArea area, PictureType type)
         {
-            this.boxes = boxes;
+            this.boxes = area.Boxes;
+            this.relations = area.Relations;
 
             DrawPicture(type);
         }
@@ -35,22 +38,37 @@ namespace UMLProject.Utils
             {
                 DrawBox(b);
             }
+
+            foreach (Relation r in this.relations)
+            {
+                DrawRelation(r);
+            }
         }
 
-        private void DrawBox(Box box)
+        private void DrawBox(Box component)
         {
             Graphics g = Graphics.FromImage(this.bitmap);
 
-            box.X -= 5;
-            box.Y -= 5;
+            bool tmp = component.IsSelected;
 
-            bool tmp = box.IsSelected;
+            component.IsSelected = false;
 
-            box.IsSelected = false;
+            component.Draw(g);
 
-            box.Draw(g);
+            component.IsSelected = tmp;
+        }
 
-            box.IsSelected = tmp;
+        private void DrawRelation(Relation component)
+        {
+            Graphics g = Graphics.FromImage(this.bitmap);
+
+            bool tmp = component.IsSelected;
+
+            component.IsSelected = false;
+
+            component.Draw(g);
+
+            component.IsSelected = tmp;
         }
 
         private void DrawBackground()
@@ -59,7 +77,7 @@ namespace UMLProject.Utils
 
             PaintingAreaSize size = PaintingArea.Size;
 
-            g.FillRectangle(PaintingArea.BackColorBrush, 0, 0, size.Width, size.Height);
+            g.FillRectangle(PaintingArea.BackColorBrush, 0, 0, size.Width + 5, size.Height + 5);
         }
     }
 }
