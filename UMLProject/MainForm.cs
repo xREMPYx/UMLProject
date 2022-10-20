@@ -33,7 +33,10 @@ namespace UMLProject
             this.panel2.Size = this.panel2.Size == this.panel2.MaximumSize
                 ? this.panel2.MinimumSize
                 : this.panel2.MaximumSize;
-        }
+
+            this.area.Unselect();
+            this.MakeButtonSelected();
+        }        
 
         private void pictureBox_drawing_area_Paint(object sender, PaintEventArgs e)
         {

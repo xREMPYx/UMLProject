@@ -36,29 +36,16 @@ namespace UMLProject.Utils
 
             foreach (Box b in this.boxes)
             {
-                DrawBox(b);
+                DrawComponent(b);
             }
 
             foreach (Relation r in this.relations)
             {
-                DrawRelation(r);
+                DrawComponent(r);
             }
         }
 
-        private void DrawBox(Box component)
-        {
-            Graphics g = Graphics.FromImage(this.bitmap);
-
-            bool tmp = component.IsSelected;
-
-            component.IsSelected = false;
-
-            component.Draw(g);
-
-            component.IsSelected = tmp;
-        }
-
-        private void DrawRelation(Relation component)
+        private void DrawComponent(Component component)
         {
             Graphics g = Graphics.FromImage(this.bitmap);
 

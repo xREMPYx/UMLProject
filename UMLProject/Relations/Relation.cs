@@ -219,7 +219,7 @@ namespace UMLProject.Relations
             int sY = start.Y >= end.Y ? end.Y : start.Y;
             int eY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
 
-            int t = 50;
+            int t = 10;
 
             sX -= t;
             eX += t;
@@ -227,8 +227,8 @@ namespace UMLProject.Relations
             sY -= t;
             eY += t;
 
-            bool isInrange = Enumerable.Range(sX, eX).Contains(current.X)
-                          && Enumerable.Range(sY, eY).Contains(current.Y);
+            bool isInrange = current.X >= sX && current.X <= sX + eX
+                          && current.Y >= sY && current.Y <= sY + eY;
 
             return isInrange;
         }

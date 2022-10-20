@@ -225,9 +225,9 @@ namespace UMLProject.Components
                 form.Box.X = form.Box.X > max.X ? max.X : form.Box.X;
                 form.Box.Y = form.Box.Y > max.Y ? max.Y : form.Box.Y;
 
-                this.Boxes.Add(form.Box);
-                this.NewBox = null;
+                this.Boxes.Add(form.Box);                
             }
+            this.NewBox = null;
         }
 
         //Sets minimal size of painting area accroding to box locations and sizes
@@ -286,13 +286,25 @@ namespace UMLProject.Components
         public void SelectNewBox(Box box)
         {
             this.RelationType = null;
+            this.ActiveBox = null;
+            this.ActiveRelation = null;            
             this.NewBox = box;            
         }
 
         public void SelectNewRelation(RelationType relation)
         {
             this.ActiveBox = null;
+            this.ActiveRelation = null;
+            this.NewBox = null;
             this.RelationType = relation;
-        }        
+        }
+
+        public void Unselect()
+        {
+            this.ActiveBox = null;
+            this.ActiveRelation = null;
+            this.NewBox = null;
+            this.RelationType = null;
+        }
     }
 }
