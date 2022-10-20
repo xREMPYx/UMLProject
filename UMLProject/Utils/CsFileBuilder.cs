@@ -13,27 +13,29 @@ namespace UMLProject.Utils
     public class CsFileBuilder
     {
         private StringBuilder stringBuilder { get; } = new StringBuilder();
-        private List<string> boxNames { get; set; } = new List<string>();
+        private List<string> relatedBoxNames { get; set; } = new List<string>();
         private IText text {get; set; }
         public CsFileBuilder(List<Relation> relations, Box box)
         {
             relations = relations.Where(r => r.To == box && (r.Type == RelationType.Inheritance || r.Type == RelationType.Implementation)).ToList();
-            boxNames = relations                
-                .Select(b => b.From.Name)
-                .ToList();           
 
-            foreach (Property p in box.Properties)
+            List<Box> implementationBoxes = relations
+                .Where(r => r.Type == RelationType.Implementation)
+                .Select(r => r.From)
+                .ToList();
+
+
+            this.relatedBoxNames = relations                
+                .Select(b => b.From.Name)
+                .ToList();
+
+            foreach (Property p in box.Properties.Concat(implementationBoxes.SelectMany(b => b.Properties)))
             {
                 stringBuilder.AppendLine(GetPropertyText(p));
                 stringBuilder.AppendLine();
             }
 
-            List<Method> implementationMethods = relations
-                .Where(r => r.Type == RelationType.Implementation)
-                .SelectMany(r => r.From.Methods)
-                .ToList();
-
-            foreach (Method m in box.Methods.Concat(implementationMethods))
+            foreach (Method m in box.Methods.Concat(implementationBoxes.SelectMany(b => b.Methods)))
             {
                 stringBuilder.AppendLine(GetMethodText(m));
                 stringBuilder.AppendLine();
@@ -77,10 +79,10 @@ namespace UMLProject.Utils
 
         private string GetParents()
         {
-            if(boxNames.Count == 0)
+            if(relatedBoxNames.Count == 0)
                 return String.Empty;
 
-            return ": " + boxNames.Aggregate((a, b) => $"{a}, " + b);
+            return ": " + relatedBoxNames.Aggregate((a, b) => $"{a}, " + b);
         }
 
         private string GetType(BoxType bt)
