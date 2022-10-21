@@ -334,7 +334,7 @@ namespace UMLProject.Relations
             {
                 if (this.To.X + this.To.Width + 25 > this.From.X)
                 {
-                    UpdateEndLocation(GetTopLocation(To, false));
+                    UpdateEndLocation(GetTopLocation(To, true));
                 }
             }
 
