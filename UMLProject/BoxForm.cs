@@ -16,15 +16,17 @@ namespace UMLProject
     public partial class BoxForm : Form
     {
         public Box Box { get; private set; }
+        private List<string> boxNames { get; set; }
 
         private int x;
         private int y;
 
-        public BoxForm(Box box)
+        public BoxForm(Box box, List<string> boxNames)
         {
             InitializeComponent();
 
             this.Box = box;
+            this.boxNames = boxNames;
 
             InitComboBoxes();
 
@@ -37,9 +39,11 @@ namespace UMLProject
             this.listBox_properties.Items.AddRange(box.Properties.ToArray());            
         }
 
-        public BoxForm(int x, int y)
+        public BoxForm(int x, int y, List<string> boxNames)
         {
             InitializeComponent();
+
+            this.boxNames = boxNames;
 
             InitComboBoxes();
 
@@ -130,6 +134,12 @@ namespace UMLProject
             if (string.IsNullOrWhiteSpace(textbox.Text))
             {
                 this.errorProvider1.SetError(textbox, "This field cannot be empty!");
+                e.Cancel = true;
+            }
+
+            if (this.boxNames.Contains(this.textBox_name.Text) && this.Box.Name != this.textBox_name.Text)
+            {
+                this.errorProvider1.SetError(this.textBox_name, "Name for this box is already taken!");
                 e.Cancel = true;
             }
         }

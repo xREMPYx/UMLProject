@@ -187,9 +187,9 @@ namespace UMLProject.Components
             }
         }
 
-        public void Edit()
+        public void Edit(List<string> boxes)
         {
-            BoxForm form = new BoxForm(this);
+            BoxForm form = new BoxForm(this, boxes);
 
             if (form.ShowDialog() == DialogResult.OK)
             {

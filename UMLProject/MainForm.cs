@@ -110,6 +110,8 @@ namespace UMLProject
                     PictureBuilder builder = new PictureBuilder(area, type);
 
                     builder.GetPicture().Save(saveFileDialog.FileName);
+
+                    MessageBox.Show("Successful!");
                 }
             };
         }
@@ -128,7 +130,8 @@ namespace UMLProject
 
                         File.WriteAllText($@"{dir}\{b.Name}.cs", builder.GetText());
                     }
-                }
+                    MessageBox.Show("Successful!");
+                }                
             };
         }
 
@@ -148,7 +151,9 @@ namespace UMLProject
                     DataService service = new DataService(area);                    
 
                     service.Export(file);
-                }
+
+                    MessageBox.Show("Successful!");
+                }               
             };
         }
 
@@ -165,6 +170,8 @@ namespace UMLProject
                     string text = File.ReadAllText(file);
 
                     service.Import(text);
+
+                    MessageBox.Show("Successful!");
                 }
             };
         }

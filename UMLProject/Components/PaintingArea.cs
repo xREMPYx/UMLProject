@@ -121,7 +121,7 @@ namespace UMLProject.Components
 
             if (this.ActiveBox != null)
             {
-                this.ActiveBox.Edit();
+                this.ActiveBox.Edit(Boxes.Select(b => b.Name).ToList());
 
                 this.ActiveBox.UpdateResizeButton();
             }            
@@ -216,7 +216,9 @@ namespace UMLProject.Components
         //Creates new box
         private void CreateNewBox(int x, int y)
         {
-            BoxForm form = new BoxForm(x, y);
+            List<string> boxes = Boxes.Select(b => b.Name).ToList();
+
+            BoxForm form = new BoxForm(x, y, boxes);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
