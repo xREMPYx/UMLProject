@@ -47,7 +47,7 @@ namespace UMLProject.Relations
                 this.resizeButton.Y = MidY;
             });
 
-            this.SetResizeButtonSize(6);
+            this.SetResizeButtonSize(7);
             this.From = from;            
 
             //SetResizeButtonUnVisible();
@@ -211,15 +211,16 @@ namespace UMLProject.Relations
             return true;
         }
 
+
         private bool IsInRange(Location current, Location start, Location end)
         {
-            int sX = start.X >= end.X ? end.X : start.X;
-            int eX = start.X >= end.X ? start.X - end.X : end.X - start.X;
+            int sX = start.X > end.X ? end.X : start.X;
+            int sY = start.Y > end.Y ? end.Y : start.Y;
 
-            int sY = start.Y >= end.Y ? end.Y : start.Y;
-            int eY = start.Y >= end.Y ? start.Y - end.Y : end.Y - start.Y;
+            int eX = start.X < end.X ? end.X : start.X;
+            int eY = start.Y < end.Y ? end.Y : start.Y;
 
-            int t = 10;
+            int t = 15;
 
             sX -= t;
             eX += t;
@@ -227,8 +228,8 @@ namespace UMLProject.Relations
             sY -= t;
             eY += t;
 
-            bool isInrange = current.X >= sX && current.X <= sX + eX
-                          && current.Y >= sY && current.Y <= sY + eY;
+            bool isInrange = current.X > sX && current.X < eX
+                          && current.Y > sY && current.Y < eY;
 
             return isInrange;
         }
@@ -305,32 +306,44 @@ namespace UMLProject.Relations
             if (To == null)
                 return;
 
-            if (this.From.X > this.To.X)
+            if (this.To.Y > this.From.Y + this.From.Height)
+            {
+                UpdateStartLocation(GetBottomLocation(From, false));
+                UpdateEndLocation(GetTopLocation(To, true));
+            }
+
+            if (this.From.Y > this.To.Y + this.To.Height)
+            {
+                UpdateStartLocation(GetTopLocation(From, false));
+                UpdateEndLocation(GetBottomLocation(To, true));
+            }
+
+            if (this.From.X > this.To.X + this.To.Width)
             {
                 UpdateStartLocation(GetLeftLocation(From, false));
                 UpdateEndLocation(GetRightLocation(To, true));
             }
 
-            if (this.From.X < this.To.X)
+            if (this.To.X > this.From.X + this.From.Width)
             {
                 UpdateStartLocation(GetRightLocation(From, false));
-                UpdateEndLocation(GetLeftLocation(To, true));
+                UpdateEndLocation(GetLeftLocation(To, true));  
             }
 
-            if (this.From.Y + this.From.Height < this.To.Y)
+            if (this.To.Y > this.From.Y + this.From.Height + 10)
             {
-                UpdateStartLocation(GetBottomLocation(From, false));
-
-                if (this.To.X < this.From.X + this.From.Width / 2)
-                    UpdateEndLocation(GetTopLocation(To, true));
+                if (this.To.X + this.To.Width + 25 > this.From.X)
+                {
+                    UpdateEndLocation(GetTopLocation(To, false));
+                }
             }
 
-            if (this.To.Y + this.To.Height < this.From.Y)
+            if (this.From.Y > this.To.Y + this.To.Height + 10)
             {
-                UpdateEndLocation(GetBottomLocation(To, true));
-
-                if (this.From.X < this.To.X + this.To.Width / 2)
+                if (this.From.X + this.From.Width + 25 > this.To.X)
+                {
                     UpdateStartLocation(GetTopLocation(From, false));
+                }
             }
 
             UpdateResizeButton();

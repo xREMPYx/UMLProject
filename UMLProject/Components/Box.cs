@@ -43,6 +43,8 @@ namespace UMLProject.Components
             this.MinWidth = (int)min.Width;
             this.MinHeight = (int)min.Height;
 
+            this.SetResizeButtonSize(8);
+
             UpdateResizeButton();
             UpdateResizeFunc(Resize);
         }
